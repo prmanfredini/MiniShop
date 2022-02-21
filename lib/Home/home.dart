@@ -26,45 +26,52 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       extendBody: true,
       appBar: AppBarBuilder(),
-      drawer: Drawer(
-        backgroundColor: Colors.purple[300],
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              child: Text('Menu'),
-              decoration: BoxDecoration(
-                color: Colors.purple,
+      drawer: Container(
+        width: 140,
+        child: Drawer(
+          backgroundColor: Colors.purple[300],
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(
+                height: 155,
+                child: const DrawerHeader(
+                  padding: EdgeInsets.all(32),
+                  child: Text('Menu'),
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                  ),
+                ),
               ),
-            ),
-            ListTile(
-              title: Text('Produtos'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Clientes'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Fornecedores'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Pedidos'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              ListTile(
+                title: Text('Produtos'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Clientes'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Fornecedores'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Pedidos'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: Padding(
