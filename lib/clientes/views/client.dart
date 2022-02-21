@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
 
@@ -39,8 +41,12 @@ class CardClientes extends StatelessWidget {
         itemCount: clientes.length,
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.amber,
-            child: Center(child: Text(clientes[index].id.toString())),
+            color: Colors.white,
+            child: Column(
+              children: [
+                Text('${clientes[index].firstName.toString()} ${clientes[index].lastName.toString()}', style: TextStyle(fontSize: 32.0),)
+              ],
+            ),
           );
         }
     );
