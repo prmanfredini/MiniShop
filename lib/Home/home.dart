@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Home/widgets/appbar.dart';
+import 'package:flutter_pr/clientes/views/client.dart';
+import 'package:flutter_pr/clientes/views/cliente_view.dart';
 
 
 class Home extends StatefulWidget {
@@ -49,7 +51,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ListTile(
               title: Text('Clientes'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacement(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) => ClienteView()));
               },
             ),
             ListTile(
@@ -69,29 +72,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 60.0),
-        child: Container(child:
-          ListView(
-            padding: const EdgeInsets.all(24),
-            children: const [
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Dados'),
-              ),),
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Gráficos'),
-              ),),
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Mapas'),
-              ),),
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Mais Dados'),
-              ),),
-
-            ],
-          ),
+        child: ListView(
+          padding: const EdgeInsets.all(24),
+          children: const [
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Dados'),
+            ),),
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Gráficos'),
+            ),),
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Mapas'),
+            ),),
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Mais Dados'),
+            ),),
+          ],
         ),
       ),
     );
