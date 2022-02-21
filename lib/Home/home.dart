@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Home/widgets/appbar.dart';
+import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
 
 
 class Home extends StatefulWidget {
@@ -26,83 +27,34 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       extendBody: true,
       appBar: AppBarBuilder(),
-      drawer: Container(
-        width: 140,
-        child: Drawer(
-          backgroundColor: Colors.purple[300],
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              Container(
-                height: 155,
-                child: const DrawerHeader(
-                  padding: EdgeInsets.all(32),
-                  child: Text('Menu'),
-                  decoration: BoxDecoration(
-                    color: Colors.purple,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text('Produtos'),
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Clientes'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Fornecedores'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Pedidos'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: DrawerBuilder(context),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 60.0),
-        child: Container(child:
-          ListView(
-            padding: const EdgeInsets.all(24),
-            children: const [
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Dados'),
-              ),),
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Gráficos'),
-              ),),
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Mapas'),
-              ),),
-              Card(child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Mais Dados'),
-              ),),
-
-            ],
-          ),
+        child: ListView(
+          padding: const EdgeInsets.all(24),
+          children: const [
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Dados'),
+            ),),
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Gráficos'),
+            ),),
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Mapas'),
+            ),),
+            Card(child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Text('Mais Dados'),
+            ),),
+          ],
         ),
       ),
     );
   }
+
 
 
 }
