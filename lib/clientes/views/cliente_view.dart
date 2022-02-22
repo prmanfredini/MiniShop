@@ -14,7 +14,7 @@ class ClienteView extends StatefulWidget {
 
 class _HomeState extends State<ClienteView> with SingleTickerProviderStateMixin {
 
-  var label = 'Pesquisar Clientes';
+  var label = 'Clientes';
 
 
   @override
@@ -27,7 +27,7 @@ class _HomeState extends State<ClienteView> with SingleTickerProviderStateMixin 
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBarBuilder(),
+      appBar: AppBarBuilder(label),
       drawer: DrawerBuilder(context),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

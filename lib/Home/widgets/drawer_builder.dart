@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/Produtos/views/produtos_view.dart';
 import 'package:flutter_pr/clientes/views/cliente_view.dart';
 
 Container DrawerBuilder(BuildContext context) {
@@ -22,10 +23,8 @@ Container DrawerBuilder(BuildContext context) {
           ListTile(
             title: Text('Produtos'),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (BuildContext context) => ProdutosView()));
             },
           ),
           ListTile(
