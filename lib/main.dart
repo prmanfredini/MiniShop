@@ -19,6 +19,7 @@ class MiniShop extends StatelessWidget {
 
 ThemeData _buildTheme() {
   return ThemeData(
+
       primaryColor: Colors.purple[800],
       colorScheme: ColorScheme.light().copyWith(
         primary: Colors.purple[400],

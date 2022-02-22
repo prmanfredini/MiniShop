@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
-  var label = 'Pesquisar Clientes';
+  var label = 'Home';
 
 
   @override
@@ -25,8 +25,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       extendBody: true,
-      appBar: AppBarBuilder(),
+      appBar: AppBarBuilder(label),
       drawer: DrawerBuilder(context),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 60.0),

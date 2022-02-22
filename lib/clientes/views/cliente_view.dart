@@ -10,9 +10,9 @@ class ClienteView extends StatefulWidget {
   State<ClienteView> createState() => _HomeState();
 }
 
-class _HomeState extends State<ClienteView>
-    with SingleTickerProviderStateMixin {
-  var label = 'Pesquisar Clientes';
+class _HomeState extends State<ClienteView> with SingleTickerProviderStateMixin {
+
+  var label = 'Clientes';
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _HomeState extends State<ClienteView>
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(),
+      appBar: AppBarBuilder(label),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Padding(
