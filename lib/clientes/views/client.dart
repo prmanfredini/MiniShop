@@ -3,30 +3,26 @@ import 'package:flutter_pr/clientes/models/cliente.dart';
 import 'package:flutter_pr/clientes/widgets/card_clientes.dart';
 
 class CardClientes extends StatelessWidget {
-  List<clienteModel> clientes = [];
+  List<dynamic> clientes = [];
 
   @override
   Widget build(BuildContext context) {
-    clientes.add(clienteModel(
-        1, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        2, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        3, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        4, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        5, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        6, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        7, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        8, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        9, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
-    clientes.add(clienteModel(
-        10, 'Rafael', 'Kikuchi', 'Belém', 'Brasil', '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 1, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 2, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 3, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 4, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 5, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 6, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 7, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    clientes.add(ClienteModel(
+        id: 8, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
 
     return GridView.builder(
         padding: EdgeInsets.all(8.0),
@@ -42,7 +38,6 @@ class CardClientes extends StatelessWidget {
           var _title = '${clientes[index].firstName} ${clientes[index].lastName}';
           var _phone = clientes[index].phone;
           var _place = '${clientes[index].city} - ${clientes[index].country}';
-
           return Card_Clientes(title: _title, phone: _phone, place: _place);
         });
   }
