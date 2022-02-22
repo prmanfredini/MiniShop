@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Home/widgets/appbar.dart';
-import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
+import 'package:flutter_pr/components/appbar.dart';
+import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
-import 'package:flutter_pr/Produtos/produtos_card.dart';
+import 'package:flutter_pr/Produtos/models/suplier.dart';
+import 'package:flutter_pr/Produtos/views/produtos_card.dart';
+import 'package:flutter_pr/Produtos/views/produtos_edit.dart';
 
 
 class ProdutosView extends StatelessWidget {
@@ -16,52 +18,40 @@ class ProdutosView extends StatelessWidget {
   Widget build(BuildContext context) {
     produtos.add(Produto(
         id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
     produtos.add(Produto(
         id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
-produtos.add(Produto(
-        id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
     produtos.add(Produto(
         id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
-produtos.add(Produto(
-        id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
     produtos.add(Produto(
         id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
-produtos.add(Produto(
-        id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
     produtos.add(Produto(
         id: 0,
-        productName: 'Nome Produto',
-        supplieId: 1,
-        unitPrice: 10,
-        packageName: '10 Caixas x 20 garrafas'));
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
+    produtos.add(Produto(
+        id: 0,
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
+    produtos.add(Produto(
+        id: 0,
+        name: 'Nome Produto',
+        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+        unitPrice: 10,));
+
 
 
     return Scaffold(
@@ -73,7 +63,7 @@ produtos.add(Produto(
           children: [
             SingleChildScrollView(
               child: Container(
-                height: (MediaQuery.of(context).size.height)- 238,
+                height: (MediaQuery.of(context).size.height)- 181,
                 padding: const EdgeInsets.all(24.0),
                 child: GridView.builder(
                     shrinkWrap: true,
@@ -88,18 +78,18 @@ produtos.add(Produto(
                     }),
               ),
             ),
-            Container(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                    tooltip: 'Cadastrar',
-                    backgroundColor: Colors.purple,
-                    onPressed: () {
-                      //savo com sucesso
-                    },
-                    child: Icon(Icons.add)))
           ],
         ),
       ),
+            floatingActionButton: FloatingActionButton.small(
+                tooltip: 'Cadastrar',
+                backgroundColor: Colors.purple,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => EditaProduto(produto: null,)));
+                },
+                child: Icon(Icons.add))
     );
   }
 }

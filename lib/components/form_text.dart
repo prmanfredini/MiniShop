@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-TextFormField FormText(_controller, _label) {
+TextFormField FormText(_controller, _label, _read) {
   return TextFormField(
     controller: _controller,
     validator: (value) {
@@ -9,6 +9,7 @@ TextFormField FormText(_controller, _label) {
       }
       return null;
     },
+    readOnly: _read,
     scrollPadding: EdgeInsets.zero,
     decoration: InputDecoration(
       labelText: _label,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Home/widgets/appbar.dart';
-import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
+import 'package:flutter_pr/components/appbar.dart';
+import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
@@ -12,19 +12,20 @@ class EditaProduto extends StatelessWidget {
 
   var _controllerImage = TextEditingController();
   var _controllerNome = TextEditingController();
-  var _controllerPacote = TextEditingController();
   var _controllerPreco = TextEditingController();
   var _controllerFornecedor = TextEditingController();
 
   var label = 'Editar do produto';
+  bool read = false;
+  final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     if (produto != null) {
-      _controllerNome.text = produto?.productName ?? '';
-      _controllerPacote.text = produto?.packageName ?? '';
-      _controllerPreco.text = produto?.unitPrice.toString() ?? '';
-      _controllerFornecedor.text = produto?.supplieId.toString() ?? '';
+      read = true;
+      _controllerNome.text = produto?.name ?? '';
+      _controllerPreco.text = produto?.unitPrice.toStringAsFixed(2) ?? '';
+      _controllerFornecedor.text = produto?.supplier.companyName.toString() ?? '';
     }
     return Scaffold(
       backgroundColor: Colors.grey[300],
@@ -40,7 +41,7 @@ class EditaProduto extends StatelessWidget {
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
-                    childAspectRatio: 4 / 4.5,
+                    childAspectRatio: 4 / 3.5,
                   ),
                   physics: const ScrollPhysics(),
                   itemCount: 1,
@@ -67,20 +68,27 @@ class EditaProduto extends StatelessWidget {
                                       child: Text('Escolher'),
                                     )),
                               ),
-                              FormText(_controllerNome, 'Nome do Produto'),
-                              FormText(_controllerPacote, 'Nome do Pacote'),
-                              Row(
-                                children: [
-                                  Expanded(
-                                      flex: 2,
-                                      child:
-                                          FormText(_controllerPreco, 'Preço:')),
-                                  Padding(padding: EdgeInsets.all(8)),
-                                  Expanded(
-                                      flex: 2,
-                                      child: FormText(_controllerFornecedor,
-                                          'ID fo Fornecedor:')),
-                                ],
+                              Form(
+                                key: _key,
+                                child: Column(
+                                  children: [
+                                    FormText(_controllerNome, 'Nome do Produto', read),
+                                    Divider(),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                            flex: 2,
+                                            child:
+                                                FormText(_controllerPreco, 'Preço:', read)),
+                                        Padding(padding: EdgeInsets.all(8)),
+                                        Expanded(
+                                            flex: 2,
+                                            child: FormText(_controllerFornecedor,
+                                                'Fornecedor:', read)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -89,19 +97,17 @@ class EditaProduto extends StatelessWidget {
                     );
                   }),
             ),
-            Container(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                    tooltip: 'Salvar',
-                    backgroundColor: Colors.purple,
-                    onPressed: () {
-                      Navigator.pop(context);
-                      //savo com sucess
-                    },
-                    child: Icon(Icons.check)))
           ],
         ),
       ),
+            floatingActionButton: FloatingActionButton.small(
+                tooltip: 'Salvar',
+                backgroundColor: Colors.purple,
+                onPressed: () {
+                  Navigator.pop(context);
+                  //savo com sucess
+                },
+                child: Icon(Icons.check))
     );
   }
 }
