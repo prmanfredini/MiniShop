@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pr/Home/widgets/appbar.dart';
 import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
 import 'package:flutter_pr/clientes/views/client.dart';
+import 'package:flutter_pr/clientes/views/cliente_cadastro.dart';
 
 class ClienteView extends StatefulWidget {
   String? dropdownValue;
@@ -37,7 +38,8 @@ class _HomeState extends State<ClienteView> with SingleTickerProviderStateMixin 
         ),
       ),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () => {},
+        onPressed: () {Navigator.pushReplacement(context, MaterialPageRoute<void>(
+            builder: (BuildContext context) => ClienteCadastro()));},
         child: const Icon(Icons.add, color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
       ),
