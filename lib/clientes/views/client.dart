@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
+import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/clientes/widgets/card_clientes.dart';
 
 class CardClientes extends StatelessWidget {
   List<dynamic> clientes = [];
+  var clientesAPI = [];
+
 
   @override
   Widget build(BuildContext context) {
+    clientesAPI.add(clienteService().getClientes());
+    print(clientesAPI);
+
     clientes.add(ClienteModel(
         id: 1, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
     clientes.add(ClienteModel(
