@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/Home/home.dart';
+import 'package:flutter_pr/Pedidos/views/pedidos_view.dart';
 import 'package:flutter_pr/Produtos/views/produtos_view.dart';
 import 'package:flutter_pr/clientes/views/cliente_view.dart';
 import 'package:flutter_pr/fornecedores/views/fornecedores_view.dart';
@@ -20,6 +22,13 @@ Container DrawerBuilder(BuildContext context) {
                 color: Colors.purple,
               ),
             ),
+          ),
+          ListTile(
+            title: Text('Home'),
+            onTap: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (BuildContext context) => Home()));
+            },
           ),
           ListTile(
             title: Text('Produtos'),
@@ -45,7 +54,8 @@ Container DrawerBuilder(BuildContext context) {
           ListTile(
             title: Text('Pedidos'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (BuildContext context) => PedidosView()));
             },
           ),
         ],
