@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Home/home.dart';
-import 'package:flutter_pr/Home/widgets/appbar.dart';
-import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
+import 'package:flutter_pr/components/appbar.dart';
+import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
+import 'package:flutter_pr/Produtos/models/suplier.dart';
 import 'package:flutter_pr/Produtos/views/produtos_edit.dart';
 
-import '../produtos_card.dart';
+import 'produtos_card.dart';
 
 
 class DetalheProduto extends StatelessWidget {
   Produto produto = Produto(
-      id: 0,
-      productName: 'Nome Produto',
-      supplieId: 1,
-      unitPrice: 10,
-      packageName: '10 Caixas x 20 garrafas');
+    id: 0,
+    name: 'Nome Produto',
+    supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+    unitPrice: 10,);
 
   var label = 'Detalhes do produto';
   @override
@@ -82,7 +82,7 @@ class DetalheProduto extends StatelessWidget {
                       style: TextStyle(fontSize: 32.0),
                     ),
                     Text(
-                      produto.packageName,
+                      produto.name,
                       style: TextStyle(fontSize: 24.0),
                     ),
                     Container(
