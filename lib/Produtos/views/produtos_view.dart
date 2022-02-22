@@ -94,8 +94,7 @@ produtos.add(Produto(
                     tooltip: 'Cadastrar',
                     backgroundColor: Colors.purple,
                     onPressed: () {
-                      Navigator.pop(context);
-                      //savo com sucess
+                      //savo com sucesso
                     },
                     child: Icon(Icons.add)))
           ],
