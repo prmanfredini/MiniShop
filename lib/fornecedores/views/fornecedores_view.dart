@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/components/appbar.dart';
-import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/clientes/views/client.dart';
+import 'package:flutter_pr/Home/widgets/appbar.dart';
+import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
 import 'package:flutter_pr/clientes/views/cliente_cadastro.dart';
+import 'package:flutter_pr/fornecedores/views/fornecedores_cadastro.dart';
 
-class ClienteView extends StatefulWidget {
+import 'fornecedores.dart';
+
+class FornecedorView extends StatefulWidget {
   String? dropdownValue;
 
   @override
-  State<ClienteView> createState() => _HomeState();
+  State<FornecedorView> createState() => _HomeState();
 }
 
-class _HomeState extends State<ClienteView>
+class _HomeState extends State<FornecedorView>
     with SingleTickerProviderStateMixin {
-  var label = 'Clientes';
+  var label = 'Fornecedores';
 
   @override
   void initState() {
@@ -32,7 +34,7 @@ class _HomeState extends State<ClienteView>
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CardClientes(),
+              CardFornecedores(),
             ],
           ),
         ),
@@ -42,7 +44,7 @@ class _HomeState extends State<ClienteView>
           Navigator.pushReplacement(
             context,
             MaterialPageRoute<void>(
-              builder: (BuildContext context) => ClienteCadastro(),
+              builder: (BuildContext context) => FornecedoresCadastro(),
             ),
           );
         },
