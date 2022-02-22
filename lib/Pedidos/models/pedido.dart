@@ -1,11 +1,12 @@
-import 'package:flutter_pr/Produtos/models/produto.dart';
+
 import 'package:flutter_pr/clientes/models/cliente.dart';
+import 'order.dart';
 
 class Pedido {
   final int id;
-  final String customer;
+  final ClienteModel customer;
   final DateTime orderDate;
-  final Produto orderItems;
+  final Order orderItems;
   final String orderNumber;
   final double totalAmount;
 
@@ -19,17 +20,17 @@ class Pedido {
 
   Pedido.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        customer = json['customer'],
+        customer = ClienteModel.fromJson(json['customer']),
         orderDate = json['orderDate'],
-        orderItems = json['orderItems'],
+        orderItems = Order.fromJson(json['orderItems']),
         orderNumber = json['orderNumber'],
         totalAmount = json['totalAmount'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'customer': customer,
+        'customer': customer.toJson(),
         'orderDate': orderDate,
-        'orderItems': orderItems,
+        'orderItems': orderItems.toJson(),
         'orderNumber': orderNumber,
         'totalAmount': totalAmount
       };

@@ -25,7 +25,8 @@ class EditaProduto extends StatelessWidget {
       read = true;
       _controllerNome.text = produto?.name ?? '';
       _controllerPreco.text = produto?.unitPrice.toStringAsFixed(2) ?? '';
-      _controllerFornecedor.text = produto?.supplier.companyName.toString() ?? '';
+      _controllerFornecedor.text =
+          produto?.supplier.companyName.toString() ?? '';
     }
     return Scaffold(
       backgroundColor: Colors.grey[300],
@@ -72,19 +73,23 @@ class EditaProduto extends StatelessWidget {
                                 key: _key,
                                 child: Column(
                                   children: [
-                                    FormText(_controllerNome, 'Nome do Produto', read),
+                                    FormText(_controllerNome, 'Nome do Produto',
+                                        read: read),
                                     Divider(),
                                     Row(
                                       children: [
                                         Expanded(
                                             flex: 2,
-                                            child:
-                                                FormText(_controllerPreco, 'Preço:', read)),
+                                            child: FormText(
+                                                _controllerPreco, 'Preço:',
+                                                read: read)),
                                         Padding(padding: EdgeInsets.all(8)),
                                         Expanded(
                                             flex: 2,
-                                            child: FormText(_controllerFornecedor,
-                                                'Fornecedor:', read)),
+                                            child: FormText(
+                                                _controllerFornecedor,
+                                                'Fornecedor:',
+                                                read: read)),
                                       ],
                                     ),
                                   ],
@@ -97,17 +102,20 @@ class EditaProduto extends StatelessWidget {
                     );
                   }),
             ),
+            SizedBox(
+              width: 340,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  //clienteService().cadastrarCliente(cliente);
+                },
+                label: Text('Salvar'),
+                icon: Icon(Icons.add),
+              ),
+            ),
           ],
         ),
       ),
-            floatingActionButton: FloatingActionButton.small(
-                tooltip: 'Salvar',
-                backgroundColor: Colors.purple,
-                onPressed: () {
-                  Navigator.pop(context);
-                  //savo com sucess
-                },
-                child: Icon(Icons.check))
     );
   }
 }
