@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Produtos/views/produtos_view.dart';
 import 'package:flutter_pr/clientes/views/cliente_view.dart';
+import 'package:flutter_pr/fornecedores/views/fornecedores_view.dart';
 
 Container DrawerBuilder(BuildContext context) {
   return Container(
@@ -37,7 +38,8 @@ Container DrawerBuilder(BuildContext context) {
           ListTile(
             title: Text('Fornecedores'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(context, MaterialPageRoute<void>(
+                  builder: (BuildContext context) => FornecedorView()));
             },
           ),
           ListTile(
