@@ -14,68 +14,52 @@ class CardDetalhes extends StatelessWidget {
       padding: const EdgeInsets.only(left: 48.0, right: 48, top: 24),
       child: Card(
         color: Colors.white,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Produtos'),
+              Padding(padding: EdgeInsets.all(4)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text('${pedido.customer.firstName} '
-                            '${pedido.customer.lastName}'),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Text('Produtos: ',
-                            style: TextStyle(color: Colors.grey)),
-                      ),
+                      Text('Qtd', style: TextStyle(color: Colors.grey)),
                       // ListView.builder(
                       //     shrinkWrap: true,
                       //     physics: const ScrollPhysics(),
                       //     itemCount: pedido.orderItems.length,
                       //     itemBuilder: (context, index) {
-                      //        return Text(pedido.orderItems[index].productId.toString());
-                             Text(pedido.orderItems.first.productId.toString()),
-                      //    }),
+                      //        return Text(pedido.orderItems[0].productId.toString());
+                      Text(pedido.orderItems.first.quantity.toString()),
+                      //     }),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 32.0),
-                        child: Row(
-                          children: [
-                            const Text('Data: ',
-                                style: TextStyle(color: Colors.grey)),
-                            Text(_data),
-                          ],
-                        ),
-                      ),
-                      const Text(
-                        'Total:',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'R\$: ${pedido.totalAmount.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
+                      Text('Produtos',style: TextStyle(color: Colors.grey)),
+                      Text(pedido.orderItems.first.productId.toString()),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Valor Unitário', style: TextStyle(color: Colors.grey)),
+                      Text('R\$ ${pedido.orderItems.first.unitPrice.toString()}'),
                     ],
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

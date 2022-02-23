@@ -32,39 +32,34 @@ class CardPedidos extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Text('Pedido ${pedido?.orderNumber}'),
+                            const Padding(padding: EdgeInsets.all(4)),
                             const Text(
                               'Cliente: ',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                  '${pedido?.customer.firstName ?? 'nome'} '
-                                  '${pedido?.customer.lastName ?? 'sobrenome'}'),
-                            ),
+                            Text(
+                                '${pedido?.customer.firstName ?? 'nome'} '
+                                '${pedido?.customer.lastName ?? 'sobrenome'}'),
+                            const Padding(padding: EdgeInsets.all(4)),
                             const Text(
                               'Qnt. de Produtos: ',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                  pedido?.orderItems.length.toString() ?? '0'),
-                            ),
+                            Text(
+                                pedido?.orderItems.length.toString() ?? '0'),
+                            const Padding(padding: EdgeInsets.all(4)),
                             const Text(
                               'Data: ',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(_data),
-                            ),
+                            Text(_data),
                           ],
                         ),
                         Column(
@@ -75,11 +70,8 @@ class CardPedidos extends StatelessWidget {
                               'Total:',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                  'R\$: ${pedido?.totalAmount.toStringAsFixed(2)}'),
-                            ),
+                            Text(
+                                'R\$: ${pedido?.totalAmount.toStringAsFixed(2)}'),
                           ],
                         ),
                       ],

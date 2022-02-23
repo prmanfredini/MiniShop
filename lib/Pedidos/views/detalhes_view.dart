@@ -18,33 +18,9 @@ class DetalhesPedido extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var label = 'Detalhes do Pedido';
 
-  List<Pedido> pedidos = [];
-  var produto = Produto(
-    id: 0,
-    isDiscontinued: false,
-    name: 'Nome Produto',
-    packageName: '10 caixas x garrafas',
-    supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
-    unitPrice: 10,
-    imagemPrincipal: 'urlString',);
-  var cliente = ClienteModel(
-      id: 1,
-      firstName: 'Rafael',
-      lastName: 'Kikuchi',
-      city: 'Belém',
-      country: 'Brasil',
-      phone: '(91) 99999-9999');
-  var ordem = Order(id: 1, productId: 1, quantity: 1, unitPrice: 10.0);
 
   @override
   Widget build(BuildContext context) {
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem,ordem], '1', 30));
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem], '1', 20));
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Colors.grey[350],
@@ -53,19 +29,10 @@ class DetalhesPedido extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
+              CardPedidos(pedido),
               SingleChildScrollView(
                 child: Container(
-                  height: (MediaQuery
-                      .of(context)
-                      .size
-                      .height) - 181,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      itemCount: pedidos.length,
-                      itemBuilder: (context, index) {
-                        return CardDetalhes(pedidos[index]);
-                      }),
+                  child: CardDetalhes(pedido),
                 ),
               ),
             ],

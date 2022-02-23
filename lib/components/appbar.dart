@@ -10,7 +10,7 @@ AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
           onPressed: () {
             key.currentState?.openDrawer();
           },
-          icon: Icon(Icons.menu_outlined)),
+          icon: const Icon(Icons.menu_outlined)),
     ),
     title: Transform(
       transform: Matrix4.translationValues(0.0, 34.0, 0.0),
@@ -30,9 +30,9 @@ AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
       Transform(
         transform: Matrix4.translationValues(0, 34, 0),
         child: Padding(
-          padding: EdgeInsets.only(right: 16.0),
+          padding: const EdgeInsets.only(right: 16.0),
           child: IconButton(
-              onPressed: () {}, icon: Icon(Icons.account_circle_outlined)),
+              onPressed: () {}, icon: const Icon(Icons.account_circle_outlined)),
         ),
       ),
     ],

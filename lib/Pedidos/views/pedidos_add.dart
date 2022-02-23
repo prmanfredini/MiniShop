@@ -18,7 +18,7 @@ class AddPedido extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey.shade300,
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
@@ -39,7 +39,7 @@ class AddPedido extends StatelessWidget {
                     return Card(
                       color: Colors.white,
                       child: Container(
-                        color: Colors.purple[300],
+                        color: Theme.of(context).primaryColor,
                         child: Padding(
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
