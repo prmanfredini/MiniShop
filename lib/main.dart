@@ -23,7 +23,7 @@ ThemeData _buildTheme() {
       primaryColor: Color(0xffa66b97),
       colorScheme: ColorScheme.light().copyWith(
         primary: Color(0xffa66b97),
-        secondary: Color(0xffa66b97),
+        secondary: Color(0xffffffff),
       ),
       buttonTheme: ButtonThemeData(
         buttonColor: Color(0xffa66b97),

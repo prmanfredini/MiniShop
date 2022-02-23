@@ -1,29 +1,32 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/bloc/clientes_bloc.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
-import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
-class ClienteCadastro extends StatefulWidget {
+class DetalhesCliente extends StatefulWidget {
   String? dropdownValue;
+  ClienteModel? cliente;
+
+  DetalhesCliente({Key? key, this.cliente}) : super(key: key);
 
   @override
-  State<ClienteCadastro> createState() => _HomeState();
+  State<DetalhesCliente> createState() => _HomeState();
 }
 
-class _HomeState extends State<ClienteCadastro>
+class _HomeState extends State<DetalhesCliente>
     with SingleTickerProviderStateMixin {
+
   final ClienteBloc _clienteBloc = ClienteBloc();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Pesquisar Clientes';
+  final label = 'Editar Cliente';
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController countryController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -31,6 +34,16 @@ class _HomeState extends State<ClienteCadastro>
 
   @override
   Widget build(BuildContext context) {
+
+    // Detalhes dos Clientes para Edição
+
+    print('id:  ${widget.cliente?.id}');
+    firstNameController.text = widget.cliente?.firstName ?? '';
+    lastNameController.text = widget.cliente?.lastName ?? '';
+    cityController.text = widget.cliente?.city ?? '';
+    countryController.text = widget.cliente?.country ?? '';
+    phoneController.text = widget.cliente?.phone ?? '';
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.grey.shade300,
@@ -89,10 +102,12 @@ class _HomeState extends State<ClienteCadastro>
               padding:
                   const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
               child: SizedBox(
-                  width: 340,
-                  child: ElevatedButton.icon(
+                  width: 120,
+                  height: 50,
+                  child: ElevatedButton(
                     onPressed: () {
-                      _clienteBloc.CadastrarCliente(
+                      _clienteBloc.EditarCliente(
+                        widget.cliente?.id as int,
                         firstNameController.text,
                         lastNameController.text,
                         cityController.text,
@@ -100,8 +115,10 @@ class _HomeState extends State<ClienteCadastro>
                         phoneController.text,
                       );
                     },
-                    label: Text('Cadastrar'),
-                    icon: Icon(Icons.add),
+                    child: const Text(
+                      'Salvar',
+                      style: TextStyle(fontSize: 24),
+                    ),
                   )),
             ),
           ],

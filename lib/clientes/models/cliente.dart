@@ -21,7 +21,7 @@ class ClienteModel {
       lastName: json['lastName'],
       city: json['city'],
       country: json['country'],
-      phone: json['country'],
+      phone: json['phone'],
     );
   }
 
