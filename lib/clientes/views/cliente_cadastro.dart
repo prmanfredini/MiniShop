@@ -42,7 +42,7 @@ class _HomeState extends State<ClienteCadastro>
               padding:
                   const EdgeInsets.only(right: 32.0, left: 32.0, top: 64.0),
               child: Container(
-                color: Colors.purple[400],
+                color: Theme.of(context).primaryColor,
                 width: 500,
                 height: 340,
                 child: Column(

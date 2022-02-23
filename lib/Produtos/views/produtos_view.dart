@@ -90,7 +90,7 @@ class ProdutosView extends StatelessWidget {
       ),
             floatingActionButton: FloatingActionButton.small(
                 tooltip: 'Cadastrar',
-                backgroundColor: Colors.purple,
+                backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(

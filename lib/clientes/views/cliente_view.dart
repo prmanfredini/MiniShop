@@ -31,7 +31,7 @@ class _HomeState extends State<ClienteView>
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               CardClientes(),

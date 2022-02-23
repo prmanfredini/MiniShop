@@ -52,7 +52,7 @@ class EditaProduto extends StatelessWidget {
                     return Card(
                       color: Colors.white,
                       child: Container(
-                        color: Colors.purple[300],
+                        color: Theme.of(context).primaryColor,
                         child: Padding(
                           padding: const EdgeInsets.all(24.0),
                           child: Column(

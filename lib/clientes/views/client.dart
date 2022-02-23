@@ -31,11 +31,11 @@ class CardClientes extends StatelessWidget {
         id: 8, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
 
     return GridView.builder(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(64.0),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 5.5 / 4,
+          crossAxisCount: 1,
+          childAspectRatio: 1.3,
         ),
         physics: ScrollPhysics(),
         itemCount: clientes.length,

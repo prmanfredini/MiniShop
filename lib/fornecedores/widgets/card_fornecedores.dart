@@ -33,10 +33,13 @@ class Card_Fornecedores extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              _companyName,
-              style: const TextStyle(fontSize: 22.0),
-              textAlign: TextAlign.start,
+            child: Row(
+              children: [
+                Text(
+                  _companyName,
+                  style: const TextStyle(fontSize: 24.0),
+                ),
+              ],
             ),
           ),
           Padding(
@@ -63,6 +66,15 @@ class Card_Fornecedores extends StatelessWidget {
               children: [
                 Icon(Icons.place),
                 Text(_place),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Row(
+              children: [
+                Icon(Icons.print),
+                Text(_fax),
               ],
             ),
           ),

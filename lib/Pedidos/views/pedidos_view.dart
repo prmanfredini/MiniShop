@@ -71,7 +71,7 @@ pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
         ),
         floatingActionButton: FloatingActionButton.small(
             tooltip: 'Cadastrar',
-            backgroundColor: Colors.purple,
+            backgroundColor: Theme.of(context).primaryColor,
             onPressed: () {
               Navigator.push(context,MaterialPageRoute(
                   builder: (BuildContext context) => AddPedido()));
