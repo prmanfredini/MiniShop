@@ -1,3 +1,4 @@
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/components/appbar.dart';
@@ -21,7 +22,7 @@ class _EditaProdutoState extends State<EditaProduto> {
   var _controllerImage = TextEditingController();
   var _controllerNome = TextEditingController();
   var _controllerPacote = TextEditingController();
-  var _controllerPreco = TextEditingController();
+  var _controllerPreco = MoneyMaskedTextController(leftSymbol: 'R\$: ');
   var _controllerFornecedor = TextEditingController();
 
   var label = 'Editar do produto';
@@ -110,7 +111,7 @@ class _EditaProdutoState extends State<EditaProduto> {
                                             flex: 2,
                                             child: FormText(
                                                 _controllerFornecedor,
-                                                'Id do Fornecedor:',
+                                                'ID Fornecedor:',
                                                 read: true)),
                                       ],
                                     ),

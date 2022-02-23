@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Pedidos/models/order.dart';
 import 'package:flutter_pr/Pedidos/views/detalhes_card.dart';
+import 'package:flutter_pr/Pedidos/views/detalhes_header.dart';
 import 'package:flutter_pr/Pedidos/views/pedidos_add.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
 import 'package:flutter_pr/components/appbar.dart';
@@ -29,7 +30,7 @@ class DetalhesPedido extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              CardPedidos(pedido),
+              HeaderDetalhes(pedido),
               SingleChildScrollView(
                 child: Container(
                   child: CardDetalhes(pedido),

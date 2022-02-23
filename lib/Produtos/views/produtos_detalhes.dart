@@ -95,7 +95,7 @@ class DetalheProduto extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'R\$: ${produto.unitPrice.toString()}',
+                      'R\$: ${produto.unitPrice.toStringAsFixed(2)}',
                       style: TextStyle(fontSize: 32.0),
                     ),
                     Column(
