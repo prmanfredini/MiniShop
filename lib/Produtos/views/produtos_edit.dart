@@ -5,33 +5,49 @@ import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
-class EditaProduto extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+class EditaProduto extends StatefulWidget {
   final Produto? produto;
 
   EditaProduto({this.produto});
 
+  bool active = false;
+  @override
+  State<EditaProduto> createState() => _EditaProdutoState();
+}
+
+class _EditaProdutoState extends State<EditaProduto> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   var _controllerImage = TextEditingController();
   var _controllerNome = TextEditingController();
+  var _controllerPacote = TextEditingController();
   var _controllerPreco = TextEditingController();
   var _controllerFornecedor = TextEditingController();
 
   var label = 'Editar do produto';
-  bool read = false;
+
   final _key = GlobalKey<FormState>();
+
+
+
+  String ativado = 'Desativado';
 
   @override
   Widget build(BuildContext context) {
-    if (produto != null) {
-      read = true;
-      _controllerNome.text = produto?.name ?? '';
-      _controllerPreco.text = produto?.unitPrice.toStringAsFixed(2) ?? '';
+    if (widget.produto != null) {
+      if (widget.produto!.isDiscontinued){
+        ativado = 'Ativado';
+      }
+      //widget.active = widget.produto?.isDiscontinued ?? false;
+      _controllerNome.text = widget.produto?.name ?? '';
+      _controllerPacote.text = widget.produto?.packageName ?? '';
+      _controllerPreco.text = widget.produto?.unitPrice.toStringAsFixed(2) ?? '';
       _controllerFornecedor.text =
-          produto?.supplier.companyName.toString() ?? '';
+          widget.produto?.supplier.id.toString() ?? '';
     }
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
@@ -44,7 +60,7 @@ class EditaProduto extends StatelessWidget {
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
-                    childAspectRatio: 4 / 3.5,
+                    childAspectRatio: 4 / 4.6,
                   ),
                   physics: const ScrollPhysics(),
                   itemCount: 1,
@@ -54,7 +70,7 @@ class EditaProduto extends StatelessWidget {
                       child: Container(
                         color: Theme.of(context).primaryColor,
                         child: Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: const EdgeInsets.only(top:36.0,left: 36,right: 36),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,27 +91,44 @@ class EditaProduto extends StatelessWidget {
                                 key: _key,
                                 child: Column(
                                   children: [
+                                    Padding(padding: EdgeInsets.all(4)),
                                     FormText(_controllerNome, 'Nome do Produto',
-                                        read: read),
-                                    Divider(),
+                                        read: true),
+                                    Padding(padding: EdgeInsets.all(4)),
+                                    FormText(_controllerPacote, 'Nome do Pacote',
+                                        read: true),
+                                    Padding(padding: EdgeInsets.all(4)),
                                     Row(
                                       children: [
                                         Expanded(
                                             flex: 2,
                                             child: FormText(
                                                 _controllerPreco, 'Preço:',
-                                                read: read)),
+                                                read: true)),
                                         Padding(padding: EdgeInsets.all(8)),
                                         Expanded(
                                             flex: 2,
                                             child: FormText(
                                                 _controllerFornecedor,
-                                                'Fornecedor:',
-                                                read: read)),
+                                                'Id do Fornecedor:',
+                                                read: true)),
                                       ],
                                     ),
                                   ],
                                 ),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:16.0),
+                                    child: Text('$ativado', style: TextStyle(color: Colors.white),),
+                                  ),
+                                  Switch(value: widget.active, onChanged: (_) {setState(() {
+                                    widget.active = !widget.active;
+                                  });})
+                                ],
                               ),
                             ],
                           ),
@@ -105,14 +138,13 @@ class EditaProduto extends StatelessWidget {
                   }),
             ),
             SizedBox(
-              width: 340,
-              child: ElevatedButton.icon(
+              width: 120,
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                   //clienteService().cadastrarCliente(cliente);
                 },
-                label: Text('Salvar'),
-                icon: Icon(Icons.add),
+                child: Text('Salvar'),
               ),
             ),
           ],

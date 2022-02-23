@@ -18,7 +18,7 @@ class AddPedido extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
@@ -81,15 +81,15 @@ class AddPedido extends StatelessWidget {
                   }),
             ),
             SizedBox(
-                width: 340,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    //clienteService().cadastrarCliente(cliente);
-                  },
-                  label: Text('Salvar'),
-                  icon: Icon(Icons.add),
-                )),
+              width: 120,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  //clienteService().cadastrarCliente(cliente);
+                },
+                child: Text('Salvar'),
+              ),
+            ),
           ],
         ),
       ),

@@ -31,7 +31,7 @@ class _HomeState extends State<ClienteCadastro>
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),

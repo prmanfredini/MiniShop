@@ -23,7 +23,7 @@ class DetalhesPedido extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
-        backgroundColor: Colors.grey[350],
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         appBar: AppBarBuilder(label, _scaffoldKey),
         drawer: DrawerBuilder(context),
         body: SafeArea(

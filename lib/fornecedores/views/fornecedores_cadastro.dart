@@ -45,7 +45,7 @@ class _HomeState extends State<FornecedoresCadastro>
 
     return Scaffold(
       key: _key,
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       extendBody: true,
       appBar: AppBarBuilder(label, _key),
       drawer: DrawerBuilder(context),

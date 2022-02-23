@@ -22,7 +22,7 @@ class PedidosView extends StatelessWidget {
     isDiscontinued: false,
     name: 'Nome Produto',
     packageName: '10 caixas x garrafas',
-    supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+    supplier: Suplier(id: 1, city: 'sp', companyName: 'wallmart', phone: '99999999',),
     unitPrice: 10,
     imagemPrincipal: 'urlString',);
   var cliente = ClienteModel(
@@ -45,7 +45,7 @@ pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
 
     return Scaffold(
       key: _scaffoldKey,
-        backgroundColor: Colors.grey[350],
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         appBar: AppBarBuilder(label, _scaffoldKey),
         drawer: DrawerBuilder(context),
         body: SafeArea(
