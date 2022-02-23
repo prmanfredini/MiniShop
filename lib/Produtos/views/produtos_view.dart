@@ -7,6 +7,7 @@ import 'package:flutter_pr/Produtos/views/produtos_card.dart';
 import 'package:flutter_pr/Produtos/views/produtos_edit.dart';
 
 class ProdutosView extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var label = 'Produtos';
 
   List<Produto> produtos = [];
@@ -14,45 +15,52 @@ class ProdutosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
+      id: 0,
+      imagemPrincipal: 'urlLink',
+      isDiscontinued: false,
+      name: 'Nome Produto',
+      packageName: '10 caixas x garrafas',
+      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      unitPrice: 10,));
     produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
+      id: 0,
+      imagemPrincipal: 'urlLink',
+      isDiscontinued: false,
+      name: 'Nome Produto',
+      packageName: '10 caixas x garrafas',
+      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      unitPrice: 10,));
     produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
+      id: 0,
+      imagemPrincipal: 'urlLink',
+      isDiscontinued: false,
+      name: 'Nome Produto',
+      packageName: '10 caixas x garrafas',
+      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      unitPrice: 10,));
     produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
+      id: 0,
+      imagemPrincipal: 'urlLink',
+      isDiscontinued: false,
+      name: 'Nome Produto',
+      packageName: '10 caixas x garrafas',
+      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      unitPrice: 10,));
     produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
-    produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
-    produtos.add(Produto(
-        id: 0,
-        name: 'Nome Produto',
-        supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
-        unitPrice: 10,));
+      id: 0,
+      imagemPrincipal: 'urlLink',
+      isDiscontinued: false,
+      name: 'Nome Produto',
+      packageName: '10 caixas x garrafas',
+      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      unitPrice: 10,));
+
 
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey[350],
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label,_scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SafeArea(
         child: Column(
@@ -66,7 +74,9 @@ class ProdutosView extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 4 / 6.5,
+                      mainAxisSpacing: 24,
+                      crossAxisSpacing: 24,
+                      childAspectRatio: 4 / 6.0,
                     ),
                     physics: const ScrollPhysics(),
                     itemCount: produtos.length,

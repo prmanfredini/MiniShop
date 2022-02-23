@@ -14,6 +14,8 @@ class ClienteCadastro extends StatefulWidget {
 
 class _HomeState extends State<ClienteCadastro>
     with SingleTickerProviderStateMixin {
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var label = 'Pesquisar Clientes';
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -28,9 +30,10 @@ class _HomeState extends State<ClienteCadastro>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Column(

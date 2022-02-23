@@ -6,6 +6,7 @@ import 'package:flutter_pr/Produtos/models/produto.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
 class EditaProduto extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final Produto? produto;
 
   EditaProduto({this.produto});
@@ -29,9 +30,10 @@ class EditaProduto extends StatelessWidget {
           produto?.supplier.companyName.toString() ?? '';
     }
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey[300],
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SafeArea(
         child: Column(

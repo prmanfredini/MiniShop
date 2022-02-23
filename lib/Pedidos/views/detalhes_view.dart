@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Pedidos/models/order.dart';
+import 'package:flutter_pr/Pedidos/views/detalhes_card.dart';
 import 'package:flutter_pr/Pedidos/views/pedidos_add.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
 import 'package:flutter_pr/components/appbar.dart';
@@ -10,11 +11,12 @@ import 'package:flutter_pr/Produtos/models/produto.dart';
 import 'package:flutter_pr/Produtos/models/suplier.dart';
 
 
-class PedidosView extends StatelessWidget {
-
+class DetalhesPedido extends StatelessWidget {
+  Pedido pedido;
+  DetalhesPedido(this.pedido);
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Pedidos';
+  var label = 'Detalhes do Pedido';
 
   List<Pedido> pedidos = [];
   var produto = Produto(
@@ -37,14 +39,14 @@ class PedidosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem,ordem], '1', 30));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem], '1', 20));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
+    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem], '1', 20));
+    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
+    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
+    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
+    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
 
     return Scaffold(
-      key: _scaffoldKey,
+        key: _scaffoldKey,
         backgroundColor: Colors.grey[350],
         appBar: AppBarBuilder(label, _scaffoldKey),
         drawer: DrawerBuilder(context),
@@ -62,21 +64,13 @@ pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
                       physics: const ScrollPhysics(),
                       itemCount: pedidos.length,
                       itemBuilder: (context, index) {
-                        return CardPedidos(pedidos[index]);
+                        return CardDetalhes(pedidos[index]);
                       }),
                 ),
               ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton.small(
-            tooltip: 'Cadastrar',
-            backgroundColor: Theme.of(context).primaryColor,
-            onPressed: () {
-              Navigator.push(context,MaterialPageRoute(
-                  builder: (BuildContext context) => AddPedido()));
-            },
-            child: const Icon(Icons.add))
     );
   }
 }

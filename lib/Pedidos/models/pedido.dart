@@ -6,7 +6,7 @@ class Pedido {
   final int id;
   final ClienteModel customer;
   final DateTime orderDate;
-  final Order orderItems;
+  final List<Order> orderItems;
   final String orderNumber;
   final double totalAmount;
 
@@ -18,11 +18,12 @@ class Pedido {
       this.orderNumber,
       this.totalAmount);
 
+
   Pedido.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         customer = ClienteModel.fromJson(json['customer']),
         orderDate = json['orderDate'],
-        orderItems = Order.fromJson(json['orderItems']),
+        orderItems = [Order.fromJson(json['orderItems'])],
         orderNumber = json['orderNumber'],
         totalAmount = json['totalAmount'];
 
@@ -30,7 +31,7 @@ class Pedido {
         'id': id,
         'customer': customer.toJson(),
         'orderDate': orderDate,
-        'orderItems': orderItems.toJson(),
+        'orderItems': orderItems.toList().toList(),
         'orderNumber': orderNumber,
         'totalAmount': totalAmount
       };

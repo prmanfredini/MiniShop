@@ -22,6 +22,7 @@ class _HomeState extends State<FornecedoresCadastro>
   final TextEditingController faxController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController countryController = TextEditingController();
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -43,9 +44,10 @@ class _HomeState extends State<FornecedoresCadastro>
 
 
     return Scaffold(
+      key: _key,
       backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _key),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Column(

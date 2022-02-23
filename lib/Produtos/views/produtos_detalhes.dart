@@ -10,19 +10,24 @@ import 'produtos_card.dart';
 
 
 class DetalheProduto extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   Produto produto = Produto(
     id: 0,
+    imagemPrincipal: 'urlLink',
+    isDiscontinued: false,
     name: 'Nome Produto',
-    supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999', ),
+    packageName: '10 caixas x garrafas',
+    supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
     unitPrice: 10,);
 
   var label = 'Detalhes do produto';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey[300],
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -41,11 +46,30 @@ class DetalheProduto extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Column(
+                      //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('${produto.name}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                        ),
+                        Container(
+                          color: Colors.blue,
+                          height: 200,
+                          width: 150,
+                          child: Text('imagem'),
+                        ),
+                        Padding(padding: EdgeInsets.all(8)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Container(
+                              color: Colors.blue,
+                              height: 90,
+                              width: 60,
+                              child: Text('imagem'),
+                            ),
+                            Padding(padding: EdgeInsets.all(2)),
                             Container(
                               color: Colors.blue,
                               height: 90,
@@ -68,22 +92,32 @@ class DetalheProduto extends StatelessWidget {
                             )
                           ],
                         ),
-                        Padding(padding: EdgeInsets.all(8)),
-                        Container(
-                          color: Colors.blue,
-                          height: 300,
-                          width: 200,
-                          child: Text('imagem'),
-                        )
                       ],
                     ),
                     Text(
                       'R\$: ${produto.unitPrice.toString()}',
                       style: TextStyle(fontSize: 32.0),
                     ),
-                    Text(
-                      produto.name,
-                      style: TextStyle(fontSize: 24.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Fornecedor: ${produto.supplier.companyName}',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                         Text(
+                          'Pacote: ${produto.packageName}',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                         Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Text(
+                            '${produto.isDiscontinued}',
+                            style: TextStyle(fontSize: 24.0),
+                        ),
+                         ),
+
+                      ],
                     ),
                     Container(
                         alignment: Alignment.bottomRight,

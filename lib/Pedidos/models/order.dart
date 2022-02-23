@@ -11,11 +11,16 @@ class Order {
     required this.unitPrice,
   });
 
-  Order.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        productId = json['productId'],
-        quantity = json['quantity'],
-        unitPrice = json['unitPrice'];
+  factory Order.fromJson(dynamic json) {
+      return Order(id: json['id'],
+          productId: json['productId'] as int,
+          quantity: json['quantity'] as int,
+          unitPrice: json['unitPrice'] as double);
+       // : id = json['id'],
+       //  productId = json['productId'],
+       //  quantity = json['quantity'],
+       //  unitPrice = json['unitPrice']
+  }
 
   Map<String, dynamic> toJson() => {
     'id': id,

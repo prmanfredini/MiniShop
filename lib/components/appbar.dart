@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/components/drawer_builder.dart';
 
-AppBarBuilder(String _label) {
+AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
   return AppBar(
     toolbarHeight: 100,
-    title: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          'assets/logo.png',
-          fit: BoxFit.contain,
-          //height: 32,
+    leading: Transform(
+      transform: Matrix4.translationValues(0.0, 34.0, 0.0),
+      child: IconButton(
+          onPressed: () {
+            key.currentState?.openDrawer();
+          },
+          icon: Icon(Icons.menu_outlined)),
+    ),
+    title: Transform(
+      transform: Matrix4.translationValues(0.0, 34.0, 0.0),
+      child: Text(_label),
+    ),
+    flexibleSpace: SafeArea(
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/logo.png'),
+            fit: BoxFit.fill,
+          ),
         ),
-        Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(_label, style: TextStyle(fontSize: 22.0)),
-        )
-      ],
+      ),
     ),
     actions: <Widget>[
-      Padding(
-        padding: EdgeInsets.only(right: 16.0),
-        child: IconButton(
-            onPressed: () {}, icon: Icon(Icons.account_circle_outlined)),
+      Transform(
+        transform: Matrix4.translationValues(0, 34, 0),
+        child: Padding(
+          padding: EdgeInsets.only(right: 16.0),
+          child: IconButton(
+              onPressed: () {}, icon: Icon(Icons.account_circle_outlined)),
+        ),
       ),
     ],
     //bottom: Padding(padding: EdgeInsets.only(right: 16.0), child: Text('algo'),),

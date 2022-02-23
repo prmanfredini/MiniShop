@@ -16,6 +16,8 @@ class FornecedorView extends StatefulWidget {
 
 class _HomeState extends State<FornecedorView>
     with SingleTickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+
   var label = 'Fornecedores';
 
   @override
@@ -26,9 +28,10 @@ class _HomeState extends State<FornecedorView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _key),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Padding(
