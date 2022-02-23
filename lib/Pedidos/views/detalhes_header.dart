@@ -34,8 +34,8 @@ class HeaderDetalhes extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
-                          '${pedido.customer.firstName} '
-                              '${pedido.customer.lastName}'),
+                          '${pedido.customer?.firstName} '
+                              '${pedido.customer?.lastName}'),
                       const Padding(padding: EdgeInsets.all(4)),
                       const Text(
                         'Data: ',
@@ -53,7 +53,7 @@ class HeaderDetalhes extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
-                          'R\$: ${pedido.totalAmount.toStringAsFixed(2)}'),
+                          'R\$: ${pedido.totalAmount?.toStringAsFixed(2)}'),
                     ],
                   ),
                 ],

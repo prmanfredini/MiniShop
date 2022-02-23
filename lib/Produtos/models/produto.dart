@@ -7,7 +7,8 @@ class Produto {
   final bool isDiscontinued;
   final String name;
   final String packageName;
-  final Suplier supplier;
+  final int supplierId;
+  final Suplier? supplier;
   final double unitPrice;
 
   Produto({
@@ -16,7 +17,8 @@ class Produto {
     required this.isDiscontinued,
     required this.name,
     required this.packageName,
-    required this.supplier,
+    required this.supplierId,
+    this.supplier,
     required this.unitPrice,
   });
 
@@ -27,15 +29,17 @@ class Produto {
         packageName = json['packageName'],
         name = json['name'],
         supplier = Suplier.fromJson(json['supplier']),
+        supplierId = Suplier.fromJson(json['supplier']).id,
         unitPrice = json['unitPrice'];
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'imagemPrincipal': imagemPrincipal,
+        //'id': id,
+        //'imagemPrincipal': imagemPrincipal,
         'isDiscontinued': isDiscontinued,
         'packageName': packageName,
         'name': name,
-        'supplier': supplier.toJson(),
+        //'supplier': supplier?.toJson(),
+        'supplierId': supplierId,
         'unitPrice': unitPrice,
 
       };

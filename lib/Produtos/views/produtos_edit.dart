@@ -44,7 +44,7 @@ class _EditaProdutoState extends State<EditaProduto> {
       _controllerPacote.text = widget.produto?.packageName ?? '';
       _controllerPreco.text = widget.produto?.unitPrice.toStringAsFixed(2) ?? '';
       _controllerFornecedor.text =
-          widget.produto?.supplier.id.toString() ?? '';
+          widget.produto?.supplier?.id.toString() ?? '';
     }
     return Scaffold(
       key: _scaffoldKey,

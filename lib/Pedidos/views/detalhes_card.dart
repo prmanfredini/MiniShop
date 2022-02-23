@@ -54,7 +54,7 @@ class CardDetalhes extends StatelessWidget {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: pedido.orderItems.length,
+                      itemCount: pedido.orderItems?.length,
                       itemBuilder: (context, index) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,16 +62,18 @@ class CardDetalhes extends StatelessWidget {
                           children: [
                             Expanded(
                                 flex: 2,
-                                child: Text(
-                                    pedido.orderItems[index].quantity.toString())),
+                                child: Text(pedido.orderItems?[index].quantity
+                                        .toString() ??
+                                    '0')),
                             Expanded(
                                 flex: 3,
-                                child: Text(
-                                    pedido.orderItems[index].productId.toString())),
+                                child: Text(pedido.orderItems?[index].productId
+                                        .toString() ??
+                                    '0')),
                             Expanded(
-                                flex: 2,
-                                child: Text(
-                                    'R\$ ${pedido.orderItems[index].unitPrice.toStringAsFixed(2)}'),
+                              flex: 2,
+                              child: Text(
+                                  'R\$ ${pedido.orderItems?[index].unitPrice.toStringAsFixed(2) ?? '0'}'),
                             ),
                           ],
                         );

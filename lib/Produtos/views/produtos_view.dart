@@ -16,6 +16,7 @@ class ProdutosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     produtos.add(Produto(
+      supplierId: 1,
       id: 0,
       imagemPrincipal: 'urlLink',
       isDiscontinued: false,
@@ -24,6 +25,7 @@ class ProdutosView extends StatelessWidget {
       supplier: Suplier(id: 1, city: 'sp', companyName: 'wallmart', phone: '99999999',),
       unitPrice: 10,));
    produtos.add(Produto(
+     supplierId: 1,
       id: 0,
       imagemPrincipal: 'urlLink',
       isDiscontinued: false,
@@ -73,7 +75,7 @@ class ProdutosView extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (BuildContext context) => AddProduto()));
                 },
-                child: Icon(Icons.add))
+                child: Icon(Icons.add, color: Colors.white),)
     );
   }
 }

@@ -22,6 +22,7 @@ class PedidosView extends StatelessWidget {
     isDiscontinued: false,
     name: 'Nome Produto',
     packageName: '10 caixas x garrafas',
+    supplierId: 1,
     supplier: Suplier(id: 1, city: 'sp', companyName: 'wallmart', phone: '99999999',),
     unitPrice: 10,
     imagemPrincipal: 'urlString',);
@@ -36,12 +37,12 @@ class PedidosView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem,ordem], '1', 30));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem,ordem], '1', 20));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
-pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
+    pedidos.add(Pedido(totalAmount: 10,customer: cliente, quantidade: 3, orderNumber: '1234', orderDate: DateTime.now()));
+    pedidos.add(Pedido(totalAmount: 10,customer: cliente, quantidade: 3, orderNumber: '1234', orderDate: DateTime.now()));
+    pedidos.add(Pedido(totalAmount: 10,customer: cliente, quantidade: 3, orderNumber: '1234', orderDate: DateTime.now()));
+    pedidos.add(Pedido(totalAmount: 10,customer: cliente, quantidade: 3, orderNumber: '1234', orderDate: DateTime.now()));
+    pedidos.add(Pedido(totalAmount: 10,customer: cliente, quantidade: 3, orderNumber: '1234', orderDate: DateTime.now()));
+
 
     return Scaffold(
       key: _scaffoldKey,
@@ -76,7 +77,7 @@ pedidos.add(Pedido(0, cliente, DateTime.now(), [ordem], '1', 10));
               Navigator.push(context,MaterialPageRoute(
                   builder: (BuildContext context) => AddPedido()));
             },
-            child: const Icon(Icons.add))
+            child: const Icon(Icons.add, color: Colors.white),)
     );
   }
 }

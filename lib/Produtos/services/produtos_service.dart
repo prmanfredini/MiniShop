@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
 
 class ProdutoService {
-  final String baseURL = "https://localhost:8080/api/orders";
+  final String baseURL = "https://private-b79b27-minishop2.apiary-mock.com/api/products";
 
   Future<List<Produto>> getProduto() async {
     Response response = await Dio().get(baseURL);
@@ -17,7 +17,9 @@ class ProdutoService {
   }
 
   Future<String> postProduto(Produto produto) async {
-    Response novoProduto = await Dio().post(baseURL, data: produto.toJson());
+    print(produto.toJson());
+    Response novoProduto = await Dio().post('$baseURL/create', data: produto.toJson());
+    print(novoProduto.data.toString());
     return novoProduto.statusMessage.toString();
 
   }

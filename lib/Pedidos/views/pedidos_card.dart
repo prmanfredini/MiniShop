@@ -45,15 +45,15 @@ class CardPedidos extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             Text(
-                                '${pedido?.customer.firstName ?? 'nome'} '
-                                '${pedido?.customer.lastName ?? 'sobrenome'}'),
+                                '${pedido?.customer?.firstName ?? 'nome'} '
+                                '${pedido?.customer?.lastName ?? 'sobrenome'}'),
                             const Padding(padding: EdgeInsets.all(4)),
                             const Text(
                               'Qnt. de Produtos: ',
                               style: TextStyle(color: Colors.grey),
                             ),
                             Text(
-                                pedido?.orderItems.length.toString() ?? '0'),
+                                pedido?.orderItems?.length.toString() ?? '0'),
                             const Padding(padding: EdgeInsets.all(4)),
                             const Text(
                               'Data: ',
@@ -71,7 +71,7 @@ class CardPedidos extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             Text(
-                                'R\$: ${pedido?.totalAmount.toStringAsFixed(2)}'),
+                                'R\$: ${pedido?.totalAmount?.toStringAsFixed(2)}'),
                           ],
                         ),
                       ],
