@@ -17,31 +17,44 @@ class CardProdutos extends StatelessWidget {
             visible: produto != null,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 80.0, bottom: 80),
-                  child: Text('imagem'),
-                ),
-                Text(
-                  'R\$: ${produto?.unitPrice.toString()}',
-                  style: TextStyle(fontSize: 16.0),
-                ),
-                Text(
-                  produto?.name ?? 'nome',
-                  style: TextStyle(fontSize: 12.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    produto?.name ?? 'nome',
+                    style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Container(
-                    alignment: Alignment.bottomRight,
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      DetalheProduto()));
-                        },
-                        icon: Icon(Icons.edit)))
+                  color: Colors.blue,
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 40.0, bottom: 40),
+                    child: Text('imagem'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'R\$: ${produto?.unitPrice.toString()}',
+                    style: const TextStyle(fontSize: 20.0),
+                  ),
+                ),
+                Text(produto?.packageName ?? 'embalagem',
+                  style: const TextStyle(fontSize: 14.0),
+                ),
+                GestureDetector(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                      alignment: Alignment.bottomRight,
+                      child: Icon(Icons.edit, size: 18,)),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                DetalheProduto()));
+                  },
+                ),
               ],
             ),
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Home/widgets/appbar.dart';
-import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
 import 'package:flutter_pr/clientes/service/cliente_service.dart';
+import 'package:flutter_pr/components/appbar.dart';
+import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/fornecedores/models/fornecedor.dart';
 
 class FornecedoresCadastro extends StatefulWidget {
@@ -22,6 +22,7 @@ class _HomeState extends State<FornecedoresCadastro>
   final TextEditingController faxController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController countryController = TextEditingController();
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -43,9 +44,10 @@ class _HomeState extends State<FornecedoresCadastro>
 
 
     return Scaffold(
+      key: _key,
       backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _key),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Column(

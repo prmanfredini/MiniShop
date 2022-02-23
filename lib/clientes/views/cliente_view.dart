@@ -13,6 +13,7 @@ class ClienteView extends StatefulWidget {
 
 class _HomeState extends State<ClienteView>
     with SingleTickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var label = 'Clientes';
 
   @override
@@ -23,9 +24,10 @@ class _HomeState extends State<ClienteView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(label),
+      appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Padding(
