@@ -20,13 +20,13 @@ class MiniShop extends StatelessWidget {
 ThemeData _buildTheme() {
   return ThemeData(
 
-      primaryColor: Colors.purple[800],
+      primaryColor: Color(0xffa66b97),
       colorScheme: ColorScheme.light().copyWith(
-        primary: Colors.purple[400],
-        secondary: Colors.purpleAccent[300],
+        primary: Color(0xffa66b97),
+        secondary: Color(0xffa66b97),
       ),
       buttonTheme: ButtonThemeData(
-        buttonColor: Colors.purple[700],
+        buttonColor: Color(0xffa66b97),
         textTheme: ButtonTextTheme.primary,
       ));
 }

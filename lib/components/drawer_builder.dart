@@ -9,50 +9,50 @@ Container DrawerBuilder(BuildContext context) {
   return Container(
     width: 140,
     child: Drawer(
-      backgroundColor: Colors.purple[300],
+      backgroundColor: Theme.of(context).primaryColor,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
             height: 155,
-            child: const DrawerHeader(
+            child: DrawerHeader(
               padding: EdgeInsets.all(32),
-              child: Text('Menu'),
+              child: Text('Menu', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0),),
               decoration: BoxDecoration(
-                color: Colors.purple,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
           ListTile(
-            title: Text('Home'),
+            title: Text('Home', style: TextStyle(color: Colors.white, fontSize: 16.0),),
             onTap: () {
               Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (BuildContext context) => Home()));
             },
           ),
           ListTile(
-            title: Text('Produtos'),
+            title: Text('Produtos', style: TextStyle(color: Colors.white, fontSize: 16.0),),
             onTap: () {
               Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (BuildContext context) => ProdutosView()));
             },
           ),
           ListTile(
-            title: Text('Clientes'),
+            title: Text('Clientes', style: TextStyle(color: Colors.white, fontSize: 16.0),),
             onTap: () {
               Navigator.pushReplacement(context, MaterialPageRoute<void>(
                   builder: (BuildContext context) => ClienteView()));
             },
           ),
           ListTile(
-            title: Text('Fornecedores'),
+            title: Text('Fornecedores', style: TextStyle(color: Colors.white, fontSize: 16.0),),
             onTap: () {
               Navigator.pushReplacement(context, MaterialPageRoute<void>(
                   builder: (BuildContext context) => FornecedorView()));
             },
           ),
           ListTile(
-            title: Text('Pedidos'),
+            title: Text('Pedidos', style: TextStyle(color: Colors.white, fontSize: 16.0),),
             onTap: () {
               Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (BuildContext context) => PedidosView()));

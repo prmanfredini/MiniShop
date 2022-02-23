@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Home/widgets/appbar.dart';
-import 'package:flutter_pr/Home/widgets/drawer_builder.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
 import 'package:flutter_pr/clientes/service/cliente_service.dart';
+import 'package:flutter_pr/components/appbar.dart';
+import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/fornecedores/models/fornecedor.dart';
 
 class FornecedoresCadastro extends StatefulWidget {
@@ -54,7 +54,7 @@ class _HomeState extends State<FornecedoresCadastro>
               padding:
                   const EdgeInsets.only(right: 32.0, left: 32.0, top: 64.0),
               child: Container(
-                color: Colors.purple[400],
+                color: Theme.of(context).primaryColor,
                 width: 500,
                 height: 340,
                 child: Column(
