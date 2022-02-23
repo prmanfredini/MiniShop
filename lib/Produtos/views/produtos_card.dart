@@ -15,47 +15,41 @@ class CardProdutos extends StatelessWidget {
         children: [
           Visibility(
             visible: produto != null,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    produto?.name ?? 'nome',
-                    style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                  ),
+            child: Material(
+              child: InkWell(onTap: (){
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalheProduto()));
+              },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        produto?.name ?? 'nome',
+                        style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Container(
+                      color: Colors.blue,
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 40.0, bottom: 40),
+                        child: Text('imagem'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'R\$: ${produto?.unitPrice.toString()}',
+                        style: const TextStyle(fontSize: 20.0),
+                      ),
+                    ),
+                    Text(produto?.packageName ?? 'embalagem',
+                      style: const TextStyle(fontSize: 14.0),
+                    ),
+                  ],
                 ),
-                Container(
-                  color: Colors.blue,
-                  child: const Padding(
-                    padding: EdgeInsets.only(top: 40.0, bottom: 40),
-                    child: Text('imagem'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'R\$: ${produto?.unitPrice.toString()}',
-                    style: const TextStyle(fontSize: 20.0),
-                  ),
-                ),
-                Text(produto?.packageName ?? 'embalagem',
-                  style: const TextStyle(fontSize: 14.0),
-                ),
-                GestureDetector(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                      alignment: Alignment.bottomRight,
-                      child: Icon(Icons.edit, size: 18,)),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                DetalheProduto()));
-                  },
-                ),
-              ],
+              ),
             ),
           ),
           Visibility(

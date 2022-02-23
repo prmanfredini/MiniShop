@@ -25,7 +25,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      backgroundColor: Colors.grey[300],
       extendBody: true,
       appBar: AppBarBuilder(label, _key),
       drawer: DrawerBuilder(context),

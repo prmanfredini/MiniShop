@@ -5,15 +5,15 @@ AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
   return AppBar(
     toolbarHeight: 100,
     leading: Transform(
-      transform: Matrix4.translationValues(0.0, 34.0, 0.0),
+      transform: Matrix4.translationValues(0.0, 36.0, 0.0),
       child: IconButton(
           onPressed: () {
             key.currentState?.openDrawer();
           },
-          icon: Icon(Icons.menu_outlined)),
+          icon: const Icon(Icons.menu_outlined)),
     ),
     title: Transform(
-      transform: Matrix4.translationValues(0.0, 34.0, 0.0),
+      transform: Matrix4.translationValues(0.0, 36.0, 0.0),
       child: Text(_label),
     ),
     flexibleSpace: SafeArea(
@@ -28,11 +28,11 @@ AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
     ),
     actions: <Widget>[
       Transform(
-        transform: Matrix4.translationValues(0, 34, 0),
+        transform: Matrix4.translationValues(0, 36, 0),
         child: Padding(
-          padding: EdgeInsets.only(right: 16.0),
+          padding: const EdgeInsets.only(right: 16.0),
           child: IconButton(
-              onPressed: () {}, icon: Icon(Icons.account_circle_outlined)),
+              onPressed: () {}, icon: const Icon(Icons.account_circle_outlined)),
         ),
       ),
     ],

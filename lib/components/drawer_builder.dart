@@ -17,45 +17,74 @@ Container DrawerBuilder(BuildContext context) {
             height: 155,
             child: DrawerHeader(
               padding: EdgeInsets.all(32),
-              child: Text('Menu', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0),),
+              child: const Text(
+                'Menu',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0),
+              ),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
             ),
           ),
           ListTile(
-            title: Text('Home', style: TextStyle(color: Colors.white, fontSize: 16.0),),
+            title: const Text(
+              'Home',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+            ),
             onTap: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (BuildContext context) => Home()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (BuildContext context) => Home()));
             },
           ),
           ListTile(
-            title: Text('Produtos', style: TextStyle(color: Colors.white, fontSize: 16.0),),
+            title: const Text(
+              'Produtos',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+            ),
             onTap: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (BuildContext context) => ProdutosView()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => ProdutosView()));
             },
           ),
           ListTile(
-            title: Text('Clientes', style: TextStyle(color: Colors.white, fontSize: 16.0),),
+            title: const Text(
+              'Clientes',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+            ),
             onTap: () {
-              Navigator.pushReplacement(context, MaterialPageRoute<void>(
-                  builder: (BuildContext context) => ClienteView()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => ClienteView()));
             },
           ),
           ListTile(
-            title: Text('Fornecedores', style: TextStyle(color: Colors.white, fontSize: 16.0),),
+            title: const Text(
+              'Fornecedores',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+            ),
             onTap: () {
-              Navigator.pushReplacement(context, MaterialPageRoute<void>(
-                  builder: (BuildContext context) => FornecedorView()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => FornecedorView()));
             },
           ),
           ListTile(
-            title: Text('Pedidos', style: TextStyle(color: Colors.white, fontSize: 16.0),),
+            title: const Text(
+              'Pedidos',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+            ),
             onTap: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (BuildContext context) => PedidosView()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => PedidosView()));
             },
           ),
         ],

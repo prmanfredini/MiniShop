@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/Produtos/views/produtos_add.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
@@ -20,46 +21,22 @@ class ProdutosView extends StatelessWidget {
       isDiscontinued: false,
       name: 'Nome Produto',
       packageName: '10 caixas x garrafas',
-      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      supplier: Suplier(id: 1, city: 'sp', companyName: 'wallmart', phone: '99999999',),
       unitPrice: 10,));
-    produtos.add(Produto(
+   produtos.add(Produto(
       id: 0,
       imagemPrincipal: 'urlLink',
       isDiscontinued: false,
       name: 'Nome Produto',
       packageName: '10 caixas x garrafas',
-      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
-      unitPrice: 10,));
-    produtos.add(Produto(
-      id: 0,
-      imagemPrincipal: 'urlLink',
-      isDiscontinued: false,
-      name: 'Nome Produto',
-      packageName: '10 caixas x garrafas',
-      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
-      unitPrice: 10,));
-    produtos.add(Produto(
-      id: 0,
-      imagemPrincipal: 'urlLink',
-      isDiscontinued: false,
-      name: 'Nome Produto',
-      packageName: '10 caixas x garrafas',
-      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
-      unitPrice: 10,));
-    produtos.add(Produto(
-      id: 0,
-      imagemPrincipal: 'urlLink',
-      isDiscontinued: false,
-      name: 'Nome Produto',
-      packageName: '10 caixas x garrafas',
-      supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+      supplier: Suplier(id: 1, city: 'sp', companyName: 'wallmart', phone: '99999999',),
       unitPrice: 10,));
 
 
 
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.grey[350],
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       appBar: AppBarBuilder(label,_scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SafeArea(
@@ -94,7 +71,7 @@ class ProdutosView extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => EditaProduto(produto: null,)));
+                          builder: (BuildContext context) => AddProduto()));
                 },
                 child: Icon(Icons.add))
     );

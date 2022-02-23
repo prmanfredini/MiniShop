@@ -22,10 +22,4 @@ class ProdutoService {
 
   }
 
-  Future<String> postExcel(Produto produto) async {
-    Response novoProduto = await Dio().post(baseURL, data: produto.toJson());
-    return novoProduto.statusMessage.toString();
-
-  }
-
 }

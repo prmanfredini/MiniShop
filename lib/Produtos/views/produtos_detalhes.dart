@@ -16,8 +16,8 @@ class DetalheProduto extends StatelessWidget {
     imagemPrincipal: 'urlLink',
     isDiscontinued: false,
     name: 'Nome Produto',
-    packageName: '10 caixas x garrafas',
-    supplier: Suplier(city: 'sp', companyName: 'wallmart', phone: '99999999',),
+    packageName: '10 caixas x 4 garrafas',
+    supplier: Suplier(id: 1, city: 'sp', companyName: 'wallmart', phone: '99999999',),
     unitPrice: 10,);
 
   var label = 'Detalhes do produto';
@@ -25,7 +25,7 @@ class DetalheProduto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),

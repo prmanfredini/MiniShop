@@ -21,6 +21,7 @@ ThemeData _buildTheme() {
   return ThemeData(
 
       primaryColor: Color(0xffa66b97),
+      secondaryHeaderColor: Color(0xffd9d9d9),
       colorScheme: ColorScheme.light().copyWith(
         primary: Color(0xffa66b97),
         secondary: Color(0xffffffff),
