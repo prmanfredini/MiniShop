@@ -1,74 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/clientes/models/cliente.dart';
+import 'package:flutter_pr/clientes/views/cliente_detalhes.dart';
 
-class Card_Clientes extends StatelessWidget {
-  const Card_Clientes({
+class CardCliente extends StatelessWidget {
+  const CardCliente({
     Key? key,
-    required String title,
-    required String phone,
-    required String place,
-  }) : _title = title, _phone = phone, _place = place, super(key: key);
+    required this.cliente,
+  }) : super(key: key);
 
-  final String _title;
-  final String _phone;
-  final String _place;
+  final List<ClienteModel> cliente;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 2.0
-        ),
-        Container(
-          height: 150,
-          child: Card(
-            semanticContainer: true,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0, left: 8.0, bottom: 8.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        _title,
-                        style: const TextStyle(fontSize: 22.0),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Row(
-                    children: [
-                      Icon(Icons.phone),
-                      Text(_phone),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Row(
-                    children: [
-                      Icon(Icons.place),
-                      Text(_place),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: GestureDetector(
+    return ListView.builder(
+      itemCount: cliente.length,
+      scrollDirection: Axis.vertical,
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index){
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Card(
+                clipBehavior: Clip.antiAlias,
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>
+                          DetalhesCliente(cliente: cliente[index])));
+                    },
                     child: Container(
-                        alignment: Alignment.bottomRight,
-                        child: Icon(Icons.edit)),
-                    onTap: () {},
+                      width: 250,
+                      child: Column(children: [
+                        ListTile(
+                          title: Text(cliente[index].firstName + ' ' + cliente[index].lastName, style: const TextStyle(fontSize: 24.0)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: [
+                              Icon(Icons.phone),
+                              Text(cliente[index].phone),],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0, top: 8.0, bottom: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: [
+                              Icon(Icons.place),
+                              Text(cliente[index].city + '-' + cliente[index].country),
+                            ],
+                          ),
+                        ),
+                      ]),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-          ),
-        ),
-      ],
+                ))
+          ],
+        );}
+
     );
   }
 }
