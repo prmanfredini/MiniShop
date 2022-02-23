@@ -22,11 +22,11 @@ class CardFornecedores extends StatelessWidget {
 
 
     return GridView.builder(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(64.0),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 6 / 5,
+          crossAxisCount: 1,
+          childAspectRatio: 1.3,
         ),
         physics: ScrollPhysics(),
         itemCount: fornecedores.length,
