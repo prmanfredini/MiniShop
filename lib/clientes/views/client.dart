@@ -4,48 +4,39 @@ import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/clientes/widgets/card_clientes.dart';
 
 class CardClientes extends StatelessWidget {
-  List<dynamic> clientes = [];
-  var clientesAPI = [];
-
+  List<dynamic> clientesAPI = [];
 
   @override
   Widget build(BuildContext context) {
-    clientesAPI.add(clienteService().getClientes());
-    print(clientesAPI);
+    clientesAPI.add(ClienteService().getClientes());
+    print(clientesAPI.first);
 
-    clientes.add(ClienteModel(
-        id: 1, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 2, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 3, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 4, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 5, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 6, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 7, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
-    clientes.add(ClienteModel(
-        id: 8, firstName: 'Rafael', lastName: 'Kikuchi', city: 'Belém', country: 'Brasil', phone: '(91) 99999-9999'));
+    return FutureBuilder<List<ClienteModel>>(
+      future: ClienteService().getClientes(),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<ClienteModel>> snapshot) {
+        print(snapshot.connectionState);
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+            // TODO: Handle this case.
+            break;
+          case ConnectionState.waiting:
+            return Container(
+                height: 500,
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
+          case ConnectionState.active:
+            // TODO: Handle this case.
+            break;
+          case ConnectionState.done:
+            final List<ClienteModel> cliente = snapshot.data ?? [];
+            if (snapshot.hasData) {
 
-    return GridView.builder(
-        padding: EdgeInsets.all(64.0),
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          childAspectRatio: 1.3,
-        ),
-        physics: ScrollPhysics(),
-        itemCount: clientes.length,
-        itemBuilder: (context, index) {
-          // Detalhes do Card de Clientes
-          var _title = '${clientes[index].firstName} ${clientes[index].lastName}';
-          var _phone = clientes[index].phone;
-          var _place = '${clientes[index].city} - ${clientes[index].country}';
-          return Card_Clientes(title: _title, phone: _phone, place: _place);
-        });
+              return CardCliente(cliente: cliente);
+            }
+        }
+        return CircularProgressIndicator();
+      },
+    );
   }
 }
-

@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
 import '../models/cliente.dart';
 
-class clienteService {
+class ClienteService {
   final String baseURL = "https://private-7be2f1-rafaelhideolopeskikuchi.apiary-mock.com/api";
 
   Future<List<ClienteModel>> getClientes() async {
@@ -12,8 +12,8 @@ class clienteService {
     return res.map((dynamic json) => ClienteModel.fromJson(json)).toList();
   }
 
-  Future<ClienteModel> getClientesById() async {
-    Response response = await Dio().get('$baseURL/Customers/customer_id');
+  Future<ClienteModel> putClientesById(ClienteModel cliente) async {
+    Response response = await Dio().put('$baseURL/Customers/customer_id');
     var res = response.data['conteudo'];
     debugPrint(res.toString());
     return ClienteModel.fromJson(res);
