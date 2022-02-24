@@ -1,8 +1,10 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_numberOnly.dart';
 import 'package:flutter_pr/components/form_text.dart';
+import 'package:flutter_pr/components/phone_form_field.dart';
 import 'package:flutter_pr/fornecedores/bloc/fornecedor_bloc.dart';
 import 'package:flutter_pr/fornecedores/models/fornecedor.dart';
 
@@ -90,12 +92,19 @@ class _HomeState extends State<DetalhesFornecedor>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 140,
-                            child: FormText(phoneController, _phone),
+                            width: MediaQuery.of(context).size.width * 0.32,
+                            child: PhoneFormField(
+                                controller: phoneController,
+                                label: 'Telefone',
+                                formatter: TelefoneInputFormatter()),
                           ),
                           SizedBox(
-                            width: 130,
-                            child: FormText(faxController, _fax),
+                            width: MediaQuery.of(context).size.width * 0.32,
+                            child: PhoneFormField(
+                                controller: faxController,
+                                label: 'Fax',
+                                formatter: TelefoneInputFormatter(),
+                          ),
                           ),
                         ],
                       ),
@@ -107,11 +116,11 @@ class _HomeState extends State<DetalhesFornecedor>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 140,
+                            width: MediaQuery.of(context).size.width * 0.32,
                             child: FormText(cityController, _city),
                           ),
                           SizedBox(
-                            width: 130,
+                            width: MediaQuery.of(context).size.width * 0.32,
                             child: FormText(countryController, _country),
                           ),
                         ],
@@ -130,6 +139,7 @@ class _HomeState extends State<DetalhesFornecedor>
                   child: ElevatedButton(
                     onPressed: () {
                       _fornecedorBloc.editarFornecedor(
+                        context,
                         widget.fornecedor?.id as int,
                         companyNameController.text,
                         contactNameController.text,

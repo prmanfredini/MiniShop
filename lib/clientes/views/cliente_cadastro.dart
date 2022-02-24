@@ -1,12 +1,11 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/bloc/clientes_bloc.dart';
-import 'package:flutter_pr/clientes/models/cliente.dart';
-import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/components/form_numberOnly.dart';
 import 'package:flutter_pr/components/form_text.dart';
+import 'package:flutter_pr/components/phone_form_field.dart';
 
 class ClienteCadastro extends StatefulWidget {
   String? dropdownValue;
@@ -19,7 +18,7 @@ class _HomeState extends State<ClienteCadastro>
     with SingleTickerProviderStateMixin {
   final ClienteBloc _clienteBloc = ClienteBloc();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Pesquisar Clientes';
+  var label = 'Cadastrar Clientes';
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
@@ -80,7 +79,10 @@ class _HomeState extends State<ClienteCadastro>
                     Container(
                       padding: const EdgeInsets.only(
                           right: 64.0, left: 64.0, top: 16.0),
-                      child: FormNumber(phoneController, 'Telefone'),
+                      child: PhoneFormField(
+                          controller: phoneController,
+                          label: 'Telefone',
+                          formatter: TelefoneInputFormatter()),
                     ),
                   ],
                 ),
@@ -95,6 +97,7 @@ class _HomeState extends State<ClienteCadastro>
                   child: ElevatedButton(
                     onPressed: () {
                       _clienteBloc.CadastrarCliente(
+                        context,
                         firstNameController.text,
                         lastNameController.text,
                         cityController.text,
@@ -111,3 +114,4 @@ class _HomeState extends State<ClienteCadastro>
     );
   }
 }
+

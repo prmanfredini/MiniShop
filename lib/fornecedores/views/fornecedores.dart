@@ -24,7 +24,6 @@ class CardFornecedores extends StatelessWidget {
             break;
           case ConnectionState.done:
             final List<FornecedorModel> fornecedor = snapshot.data ?? [];
-            print('AQUIIII $fornecedor');
             if (snapshot.hasData) {
               return CardFornecedor(fornecedor: fornecedor);
             }
