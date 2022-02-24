@@ -1,32 +1,33 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/clientes/models/cliente.dart';
-import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
+import 'package:flutter_pr/components/form_numberOnly.dart';
 import 'package:flutter_pr/components/form_text.dart';
 import 'package:flutter_pr/fornecedores/bloc/fornecedor_bloc.dart';
 import 'package:flutter_pr/fornecedores/models/fornecedor.dart';
-import 'package:flutter_pr/fornecedores/service/fornecedores_service.dart';
 
-class FornecedoresCadastro extends StatefulWidget {
+class DetalhesFornecedor extends StatefulWidget {
   String? dropdownValue;
+  FornecedorModel? fornecedor;
+
+  DetalhesFornecedor({Key? key, this.fornecedor}) : super(key: key);
 
   @override
-  State<FornecedoresCadastro> createState() => _HomeState();
+  State<DetalhesFornecedor> createState() => _HomeState();
 }
 
-class _HomeState extends State<FornecedoresCadastro>
+class _HomeState extends State<DetalhesFornecedor>
     with SingleTickerProviderStateMixin {
-  var label = 'Cadastrar Fornecedores';
+
   final FornecedorBloc _fornecedorBloc = FornecedorBloc();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  var label = 'Cadastrar Fornecedores';
   final TextEditingController companyNameController = TextEditingController();
   final TextEditingController contactNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController faxController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController countryController = TextEditingController();
-  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -45,20 +46,27 @@ class _HomeState extends State<FornecedoresCadastro>
     var _city = 'Cidade:';
     var _country = 'País:';
 
+    // Detalhes dos Fornecedores para Edição
 
+    companyNameController.text = widget.fornecedor?.companyName ?? '';
+    contactNameController.text = widget.fornecedor?.contactName ?? '';
+    phoneController.text = widget.fornecedor?.phone ?? '';
+    cityController.text = widget.fornecedor?.city ?? '';
+    countryController.text = widget.fornecedor?.country ?? '';
+    faxController.text = widget.fornecedor?.fax ?? '';
 
     return Scaffold(
-      key: _key,
-      backgroundColor: Theme.of(context).secondaryHeaderColor,
+      key: _scaffoldKey,
+      backgroundColor: Colors.grey.shade300,
       extendBody: true,
-      appBar: AppBarBuilder(label, _key),
+      appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding:
-                  const EdgeInsets.only(right: 32.0, left: 32.0, top: 64.0),
+              const EdgeInsets.only(right: 32.0, left: 32.0, top: 64.0),
               child: Container(
                 color: Theme.of(context).primaryColor,
                 width: 500,
@@ -115,14 +123,14 @@ class _HomeState extends State<FornecedoresCadastro>
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
+              const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
               child: SizedBox(
                   width: 140,
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      _fornecedorBloc.cadastrarFornecedor(
-                        0,
+                      _fornecedorBloc.editarFornecedor(
+                        widget.fornecedor?.id as int,
                         companyNameController.text,
                         contactNameController.text,
                         null,
@@ -140,6 +148,6 @@ class _HomeState extends State<FornecedoresCadastro>
       ),
     );
   }
-
-
 }
+
+

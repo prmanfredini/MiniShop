@@ -43,7 +43,7 @@ class CardCliente extends StatelessWidget {
                             crossAxisAlignment:
                             CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.phone),
+                              Icon(Icons.phone, size: 20.0,),
                               Text(cliente[index].phone),],
                           ),
                         ),
@@ -52,9 +52,9 @@ class CardCliente extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                            CrossAxisAlignment.center,
                             children: [
-                              Icon(Icons.place),
+                              Icon(Icons.place, size: 20.0,),
                               Text(cliente[index].city + '-' + cliente[index].country),
                             ],
                           ),

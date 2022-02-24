@@ -4,12 +4,9 @@ import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/clientes/widgets/card_clientes.dart';
 
 class CardClientes extends StatelessWidget {
-  List<dynamic> clientesAPI = [];
 
   @override
   Widget build(BuildContext context) {
-    clientesAPI.add(ClienteService().getClientes());
-    print(clientesAPI.first);
 
     return FutureBuilder<List<ClienteModel>>(
       future: ClienteService().getClientes(),
@@ -35,7 +32,10 @@ class CardClientes extends StatelessWidget {
               return CardCliente(cliente: cliente);
             }
         }
-        return CircularProgressIndicator();
+        return Container(
+            height: 500,
+            alignment: Alignment.center,
+            child: CircularProgressIndicator());
       },
     );
   }
