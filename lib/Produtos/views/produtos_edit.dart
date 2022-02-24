@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/Produtos/models/produto.dart';
+import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
 class EditaProduto extends StatefulWidget {

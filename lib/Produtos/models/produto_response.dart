@@ -16,27 +16,18 @@ class Produto {
     required this.packageName,
     required this.isDiscontinued,
     this.imagemPrincipal,
-    // this.supplier,
+    //this.supplier,
   });
 
-  factory Produto.fromJson(Map<String, dynamic> json)
-  {
-      return Produto(
-          id: json['id'],
-          name: json['name'],
-          unitPrice: json['unitPrice'],
-          packageName: json['packageName'],
-          isDiscontinued: json['isdiscontinued'],
-          //supplier: Suplier.fromJson(json['supplier']),
-      );}
-      //   : id = json['id'],
-      //   name = json['name'],
-      //   unitPrice = json['unitPrice'],
-      //   packageName = json['packageName'],
-      //   isDiscontinued = json['isdiscontinued'],
-      //   imagemPrincipal = json['imagemPrincipal'];
-      //   // supplier = Suplier.fromJson(json['supplier']),
-      //   // supplierId = Suplier.fromJson(json['supplier']).id;
+  Produto.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        unitPrice = json['unitPrice'],
+        packageName = json['packageName'],
+        isDiscontinued = json['isDiscontinued'],
+        imagemPrincipal = json['imagemPrincipal'];
+        //supplier = Suplier.fromJson(json['supplier']);
+        // supplierId = Suplier.fromJson(json['supplier']).id;
 
   // Map<String, dynamic> toJson() => {
   //       //'id': id,

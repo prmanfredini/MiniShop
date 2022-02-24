@@ -8,7 +8,7 @@ import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
 import 'package:flutter_pr/Pedidos/widgets/pedidos_card.dart';
-import 'package:flutter_pr/Produtos/models/produto.dart';
+import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/Produtos/models/suplier.dart';
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Produtos/models/produto.dart';
+import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/Produtos/views/produtos_detalhes.dart';
 
 class CardProdutos extends StatelessWidget {
@@ -14,9 +14,10 @@ class CardProdutos extends StatelessWidget {
       child: Column(
         children: [
           Material(
+            color: Colors.white,
             child: InkWell(onTap: (){
               Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) => DetalheProduto()));
+                  builder: (BuildContext context) => DetalheProduto(produto.id)));
             },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,7 +26,7 @@ class CardProdutos extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       produto.name,
-                      style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -38,7 +39,7 @@ class CardProdutos extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'R\$: ${produto.unitPrice.toStringAsFixed(2)}',
+                      'R\$ ${produto.unitPrice.toStringAsFixed(2)}',
                       style: const TextStyle(fontSize: 20.0),
                     ),
                   ),

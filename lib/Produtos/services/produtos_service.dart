@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_pr/Produtos/models/produto.dart';
+import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/Produtos/models/produto_request.dart';
 
 class ProdutoService {
@@ -11,10 +11,6 @@ class ProdutoService {
   Future<List<Produto>> getProduto(int index, int qtd) async {
     Response response = await Dio().get('$baseURL?index=$index&qtd=$qtd');
     List<dynamic> res = response.data['objetoRetorno']['content'];
-    print('res = $res'); //até aqui vem
-
-
-    //Iterable<Produto> realdata = List<Produto>.from(res).map((x) => Produto.fromJson(x));
 
     if (response.statusCode == 200) {
       return res.map((dynamic json) => Produto.fromJson(json)).toList();
@@ -25,8 +21,13 @@ class ProdutoService {
 
   Future<Produto> getProdutoById(int idPedido) async {
     Response response = await Dio().get('$baseURL/$idPedido');
-    var res = response.data;
+    var res = response.data['objetoRetorno'];
+
+    if (response.statusCode == 200) {
     return Produto.fromJson(res);
+    } else {
+      throw "Server Error";
+    }
   }
 
   Future<String> postProduto(ProdutoRequest produto) async {

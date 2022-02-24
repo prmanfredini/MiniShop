@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Produtos/models/produto.dart';
+import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/Produtos/models/produto_request.dart';
 import 'package:flutter_pr/Produtos/services/produtos_service.dart';
 
@@ -7,12 +7,18 @@ class ProdutosBloc {
   ProdutoService produtoService = ProdutoService();
 
   Future<List<Produto>> getProdutos() async {
-    var res = await produtoService.getProduto(0,20);
+    var res = await produtoService.getProduto(0,50);
     print('resBloc = ${res.toList()}');
     if (res.isNotEmpty) {
       return res;
     }
     return [];
+  }
+  Future<Produto> getProdutosById(int idProduto) async {
+    var res = await produtoService.getProdutoById(idProduto);
+
+    return res;
+
   }
 
   void EditProduto(

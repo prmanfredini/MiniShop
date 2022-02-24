@@ -23,14 +23,7 @@ class ProdutoRequest {
         packageName: json['packageName'],
         supplierId: json['supplierId'],
         unitPrice: json['unitPrice']);}
-  //   : id = json['id'],
-  //   name = json['name'],
-  //   unitPrice = json['unitPrice'],
-  //   packageName = json['packageName'],
-  //   isDiscontinued = json['isdiscontinued'],
-  //   imagemPrincipal = json['imagemPrincipal'];
-  //   // supplier = Suplier.fromJson(json['supplier']),
-  //   // supplierId = Suplier.fromJson(json['supplier']).id;
+
 
   Map<String, dynamic> toJson() => {
     'isDiscontinued': isDiscontinued,

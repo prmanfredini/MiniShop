@@ -21,12 +21,24 @@ class Pedido {
   });
 
 
-  Pedido.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        orderDate = json['orderDate'],
-        orderNumber = json['orderNumber'],
-        totalAmount = json['totalAmount'],
-        customer = ClienteModel.fromJson(json['customer']),
-        orderItems = [OrderItems.fromJson(json['orderItems'])];
+  factory Pedido.fromJson(Map<String, dynamic> json){
+    List<dynamic> orderItems = json['orderItems'];
+    return Pedido(
+         id : json['id'],
+         orderDate : DateTime.parse(json['orderDate']),
+         orderNumber : json['orderNumber'],
+         totalAmount : json['totalAmount'],
+         customer : ClienteModel.fromJson(json['customer']),
+         orderItems : orderItems.map((json) => OrderItems.fromJson(json)).toList(),
+    );
+
+  }
+      // : id = json['id'],
+      //   orderDate = json['orderDate'],
+      //   orderNumber = json['orderNumber'],
+      //   totalAmount = json['totalAmount'],
+      //   customer = ClienteModel.fromJson(json['customer']),
+      //   orderItems = json['orderItems'].map((json) => OrderItems.fromJson(json)).toList();
+
 
 }

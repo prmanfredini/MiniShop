@@ -15,10 +15,10 @@ class OrderItems{
 
   factory OrderItems.fromJson(dynamic json) {
     return OrderItems(
-        id: json['id'] as int,
-        productId: json['productId'] as int,
-        unitPrice: json['unitPrice'] as double,
-        quantity: json['quantity'] as int,
+        id: json['id'],
+        productId: json['productId'],
+        unitPrice: json['unitPrice'],
+        quantity: json['quantity'],
         productName: json['productName'],
         );
   }

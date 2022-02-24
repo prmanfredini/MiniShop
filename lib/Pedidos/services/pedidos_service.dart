@@ -10,10 +10,7 @@ class PedidoService {
   Future<List<Pedido>> getPedidos(int index, int qtd) async {
     Response response = await Dio().get('$baseURL?index=$index&qtd=$qtd');
     List<dynamic> res = response.data['objetoRetorno']['content'];
-    print('res = $res'); // chega até aqui
-
-    final List<dynamic> decodedJson = jsonDecode(response.data['objetoRetorno']['content']);
-    print(decodedJson);
+    //print('res = $res'); // chega até aqui
 
     if (response.statusCode == 200) {
       return res.map((json) => Pedido.fromJson(json)).toList();
