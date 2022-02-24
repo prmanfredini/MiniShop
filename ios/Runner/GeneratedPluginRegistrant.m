@@ -6,23 +6,16 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<libphonenumber/LibphonenumberPlugin.h>)
-#import <libphonenumber/LibphonenumberPlugin.h>
+#if __has_include(<shared_preferences_ios/FLTSharedPreferencesPlugin.h>)
+#import <shared_preferences_ios/FLTSharedPreferencesPlugin.h>
 #else
-@import libphonenumber;
-#endif
-
-#if __has_include(<libphonenumber_plugin/FLTLibphonenumberPlugin.h>)
-#import <libphonenumber_plugin/FLTLibphonenumberPlugin.h>
-#else
-@import libphonenumber_plugin;
+@import shared_preferences_ios;
 #endif
 
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [LibphonenumberPlugin registerWithRegistrar:[registry registrarForPlugin:@"LibphonenumberPlugin"]];
-  [FLTLibphonenumberPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTLibphonenumberPlugin"]];
+  [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
 }
 
 @end

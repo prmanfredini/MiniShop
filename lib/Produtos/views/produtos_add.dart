@@ -1,6 +1,7 @@
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_numberOnly.dart';
@@ -8,12 +9,12 @@ import 'package:flutter_pr/components/form_text.dart';
 
 class AddProduto extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final _controllerImage = TextEditingController();
+  final ProdutosBloc pBloc = ProdutosBloc();
+  final _controllerPreco = MoneyMaskedTextController(leftSymbol: 'R\$: ');
   final _controllerNome = TextEditingController();
   final _controllerPacote = TextEditingController();
-  final _controllerPreco = MoneyMaskedTextController(leftSymbol: 'R\$: ');
   final _controllerFornecedor = TextEditingController();
+  final _controllerImage = TextEditingController();
 
   var label = 'Cadastrar produto';
   bool read = false;
@@ -23,7 +24,9 @@ class AddProduto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Theme.of(context).secondaryHeaderColor,
+      backgroundColor: Theme
+          .of(context)
+          .secondaryHeaderColor,
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
@@ -44,7 +47,9 @@ class AddProduto extends StatelessWidget {
                     return Card(
                       color: Colors.white,
                       child: Container(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme
+                            .of(context)
+                            .primaryColor,
                         child: Padding(
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
@@ -79,12 +84,13 @@ class AddProduto extends StatelessWidget {
                                         Expanded(
                                           flex: 2,
                                           child: FormNumber(
-                                              _controllerPreco, 'Preço:'),
+                                              _controllerPreco, 'Preço:', length: 5),
                                         ),
                                         Padding(padding: EdgeInsets.all(8)),
                                         Expanded(
                                           flex: 2,
-                                          child: FormNumber(_controllerFornecedor,
+                                          child: FormNumber(
+                                              _controllerFornecedor,
                                               'Id do Fornecedor:'),
                                         ),
                                       ],
@@ -103,8 +109,15 @@ class AddProduto extends StatelessWidget {
               width: 120,
               child: ElevatedButton(
                 onPressed: () {
+                  pBloc.salvarProduto(
+                      _controllerPreco.text,
+                      _controllerNome.text,
+                      _controllerPacote.text,
+                      _controllerFornecedor.text,
+                      _controllerImage.text,
+                      _key,
+                      context);
                   Navigator.pop(context);
-                  //clienteService().cadastrarCliente(cliente);
                 },
                 child: Text('Salvar'),
               ),

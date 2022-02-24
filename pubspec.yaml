@@ -32,6 +32,8 @@ dependencies:
   dio:
   date_format:
   extended_masked_text:
+  intl:
+  shared_preferences:
   intl_phone_number_input:
 
   # The following adds the Cupertino Icons font to your application.

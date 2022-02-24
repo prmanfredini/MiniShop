@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-TextFormField FormNumber(_controller, _label) {
+TextFormField FormNumber(_controller, _label, {length = 13}) {
   return TextFormField(
     controller: _controller,
     validator: (value) {
@@ -11,7 +11,8 @@ TextFormField FormNumber(_controller, _label) {
       }
       return null;
     },
-    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+    inputFormatters: [FilteringTextInputFormatter.digitsOnly,
+    LengthLimitingTextInputFormatter(length)],
     keyboardType: TextInputType.number,
     scrollPadding: EdgeInsets.zero,
     decoration: InputDecoration(
