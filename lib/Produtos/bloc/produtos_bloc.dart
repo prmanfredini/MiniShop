@@ -8,18 +8,39 @@ class ProdutosBloc {
 
   Future<List<Produto>> getProdutos() async {
     var res = await produtoService.getProduto(0,50);
-    print('resBloc = ${res.toList()}');
     if (res.isNotEmpty) {
       return res;
     }
     return [];
   }
+
   Future<Produto> getProdutosById(int idProduto) async {
     var res = await produtoService.getProdutoById(idProduto);
 
     return res;
 
   }
+
+  String getAtivo(Produto produto) {
+    String ativo = '';
+    if (produto.isDiscontinued){
+      ativo = 'Inativo';
+    }else {
+      ativo = 'Ativo';
+    }
+    return ativo;
+  }
+
+  Color getColor(Produto produto) {
+    Color cor = Colors.grey;
+    if (produto.isDiscontinued){
+      cor = Colors.grey;
+    }else {
+      cor = Colors.green;
+    }
+    return cor;
+  }
+
 
   void EditProduto(
       int id,

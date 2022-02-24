@@ -19,14 +19,6 @@ class DetalheProduto extends StatelessWidget {
 
   ProdutosBloc prodBloc = ProdutosBloc();
 
-
-
-  // var ativo = 'Inativo';
-  // var cor = Colors.grey;
-
-  var ativo = 'Ativo';
-  var cor = Colors.green;
-
   var label = 'Detalhes do produto';
 
   @override
@@ -43,7 +35,6 @@ class DetalheProduto extends StatelessWidget {
           future: prodBloc.getProdutosById(produtoId),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             Produto? produto = snapshot.data;
-            print('prod.view data = ${snapshot.data}');
             if (snapshot.hasData) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
@@ -56,7 +47,8 @@ class DetalheProduto extends StatelessWidget {
                   return detalhes_card(produto);
               }
             }
-            return CenteredMessage('não há produtos');;
+            return CenteredMessage('não há produtos');
+            ;
           },
         ),
       ),
@@ -65,122 +57,124 @@ class DetalheProduto extends StatelessWidget {
 
   GridView detalhes_card(Produto? produto) {
     return GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio: 4 / 6.5,
-            ),
-            physics: const ScrollPhysics(),
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              return Card(
-                color: Colors.white,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          childAspectRatio: 4 / 6.5,
+        ),
+        physics: const ScrollPhysics(),
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return Card(
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      //mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            produto?.name ?? '',
-                            style: const TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.blue,
-                          height: 150,
-                          width: 100,
-                          child: Text('imagem'),
-                        ),
-                        Padding(padding: EdgeInsets.all(8)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              color: Colors.blue,
-                              height: 90,
-                              width: 60,
-                              child: Text('imagem'),
-                            ),
-                            Padding(padding: EdgeInsets.all(2)),
-                            Container(
-                              color: Colors.blue,
-                              height: 90,
-                              width: 60,
-                              child: Text('imagem'),
-                            ),
-                            Padding(padding: EdgeInsets.all(2)),
-                            Container(
-                              color: Colors.blue,
-                              height: 90,
-                              width: 60,
-                              child: Text('imagem'),
-                            ),
-                            Padding(padding: EdgeInsets.all(2)),
-                            Container(
-                              color: Colors.blue,
-                              height: 90,
-                              width: 60,
-                              child: Text('imagem'),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    Padding(padding: EdgeInsets.all(8)),
-                    Text(
-                      'R\$ ${produto?.unitPrice.toStringAsFixed(2) ?? '0'}',
-                      style: TextStyle(fontSize: 32.0),
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 24.0, top: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Text(
-                          //   'Fornecedor: ${produto?.supplier?.companyName ?? 'nome'}',
-                          //   style: TextStyle(fontSize: 20.0),
-                          // ),
-                          Text(
-                            'Pacote: ${produto?.packageName ?? ''}',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '•',
-                                style: TextStyle(color: cor, fontSize: 80),
-                              ),
-                              Text(
-                                '${ativo}',
-                                style: TextStyle(fontSize: 24.0),
-                              ),
-                            ],
-                          ),
-                        ],
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        produto?.name ?? '',
+                        style: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
-                        alignment: Alignment.bottomRight,
-                        child: IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          EditaProduto(
-                                            produto: produto!,
-                                          )));
-                            },
-                            iconSize: 32,
-                            icon: Icon(Icons.edit)))
+                      color: Colors.blue,
+                      height: 150,
+                      width: 100,
+                      child: Text('imagem'),
+                    ),
+                    Padding(padding: EdgeInsets.all(8)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          color: Colors.blue,
+                          height: 90,
+                          width: 60,
+                          child: Text('imagem'),
+                        ),
+                        Padding(padding: EdgeInsets.all(2)),
+                        Container(
+                          color: Colors.blue,
+                          height: 90,
+                          width: 60,
+                          child: Text('imagem'),
+                        ),
+                        Padding(padding: EdgeInsets.all(2)),
+                        Container(
+                          color: Colors.blue,
+                          height: 90,
+                          width: 60,
+                          child: Text('imagem'),
+                        ),
+                        Padding(padding: EdgeInsets.all(2)),
+                        Container(
+                          color: Colors.blue,
+                          height: 90,
+                          width: 60,
+                          child: Text('imagem'),
+                        )
+                      ],
+                    ),
                   ],
                 ),
-              );
-            });
+                Padding(padding: EdgeInsets.all(8)),
+                Text(
+                  'R\$ ${produto?.unitPrice.toStringAsFixed(2) ?? '0'}',
+                  style: TextStyle(fontSize: 32.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 24.0, top: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Text(
+                      //   'Fornecedor: ${produto?.supplier?.companyName ?? 'nome'}',
+                      //   style: TextStyle(fontSize: 20.0),
+                      // ),
+                      Text(
+                        'Pacote: ${produto?.packageName ?? ''}',
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '•',
+                            style: TextStyle(
+                                color: prodBloc.getColor(produto!),
+                                fontSize: 80),
+                          ),
+                          Text(
+                            prodBloc.getAtivo(produto),
+                            style: TextStyle(fontSize: 24.0),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      EditaProduto(
+                                        produto: produto,
+                                      )));
+                        },
+                        iconSize: 32,
+                        icon: Icon(Icons.edit)))
+              ],
+            ),
+          );
+        });
   }
 }

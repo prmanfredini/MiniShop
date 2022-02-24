@@ -35,7 +35,6 @@ class ProdutosView extends StatelessWidget {
                     builder: (BuildContext context,
                         AsyncSnapshot<List<Produto>> snapshot) {
                       List<Produto> produtos = snapshot.data ?? [];
-                      print('prod.view data = ${snapshot.data}');
                           if (snapshot.hasData) {
                             switch (snapshot.connectionState) {
                               case ConnectionState.none:
