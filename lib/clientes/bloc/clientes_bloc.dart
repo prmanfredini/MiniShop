@@ -13,7 +13,7 @@ class ClienteBloc {
       phone: phone,
     );
     print(cliente.toJson());
-    //clienteService().cadastrarCliente(cliente);
+    ClienteService().cadastrarCliente(cliente);
   }
 
   void EditarCliente(int id, String firstName, String lastName, String city, String country, String phone) {
@@ -26,7 +26,7 @@ class ClienteBloc {
       phone: phone,
     );
     print(cliente.toJson());
-    // clienteService().putClientesById(cliente);
+    ClienteService().editarClientes(cliente);
   }
 
 }

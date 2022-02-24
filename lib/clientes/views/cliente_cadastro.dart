@@ -5,6 +5,7 @@ import 'package:flutter_pr/clientes/models/cliente.dart';
 import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
+import 'package:flutter_pr/components/form_numberOnly.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
 class ClienteCadastro extends StatefulWidget {
@@ -79,7 +80,7 @@ class _HomeState extends State<ClienteCadastro>
                     Container(
                       padding: const EdgeInsets.only(
                           right: 64.0, left: 64.0, top: 16.0),
-                      child: FormText(phoneController, 'Telefone'),
+                      child: FormNumber(phoneController, 'Telefone'),
                     ),
                   ],
                 ),
@@ -89,8 +90,9 @@ class _HomeState extends State<ClienteCadastro>
               padding:
                   const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
               child: SizedBox(
-                  width: 340,
-                  child: ElevatedButton.icon(
+                  width: 140,
+                  height: 50,
+                  child: ElevatedButton(
                     onPressed: () {
                       _clienteBloc.CadastrarCliente(
                         firstNameController.text,
@@ -100,8 +102,7 @@ class _HomeState extends State<ClienteCadastro>
                         phoneController.text,
                       );
                     },
-                    label: Text('Cadastrar'),
-                    icon: Icon(Icons.add),
+                    child: Text('Cadastrar'),
                   )),
             ),
           ],

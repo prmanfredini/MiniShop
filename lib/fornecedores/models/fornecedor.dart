@@ -2,11 +2,11 @@ class FornecedorModel {
   int id = 0;
   String companyName = '';
   String contactName = '';
-  String contactTitle = '';
+  String? contactTitle = '';
   String city = '';
   String country = '';
   String phone = '';
-  String fax = '';
+  String? fax = '';
 
   FornecedorModel({
     required this.id,
@@ -33,7 +33,6 @@ class FornecedorModel {
 
   Map<String, dynamic> toJson() =>
       {
-        'id': id,
         'companyName': companyName,
         'contactName': contactName,
         'contactTitle': contactTitle,
