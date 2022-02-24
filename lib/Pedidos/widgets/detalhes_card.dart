@@ -1,6 +1,6 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Pedidos/models/pedido.dart';
+import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
 
 class CardDetalhes extends StatelessWidget {
   Pedido pedido;
@@ -62,16 +62,16 @@ class CardDetalhes extends StatelessWidget {
                           children: [
                             Expanded(
                                 flex: 2,
-                                child: Text(
-                                    pedido.orderItems[index].quantity.toString())),
+                                child: Text(pedido.orderItems[index].quantity
+                                        .toString())),
                             Expanded(
                                 flex: 3,
-                                child: Text(
-                                    pedido.orderItems[index].productId.toString())),
+                                child: Text(pedido.orderItems[index].productId
+                                        .toString())),
                             Expanded(
-                                flex: 2,
-                                child: Text(
-                                    'R\$ ${pedido.orderItems[index].unitPrice.toStringAsFixed(2)}'),
+                              flex: 2,
+                              child: Text(
+                                  'R\$ ${pedido.orderItems[index].unitPrice.toStringAsFixed(2)}'),
                             ),
                           ],
                         );
