@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/bloc/clientes_bloc.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_numberOnly.dart';
 import 'package:flutter_pr/components/form_text.dart';
+import 'package:flutter_pr/components/phone_form_field.dart';
 
 class DetalhesCliente extends StatefulWidget {
   String? dropdownValue;
@@ -93,7 +95,11 @@ class _HomeState extends State<DetalhesCliente>
                     Container(
                       padding: const EdgeInsets.only(
                           right: 64.0, left: 64.0, top: 16.0),
-                      child: FormNumber(phoneController, 'Telefone'),
+                      child: PhoneFormField(
+                          controller: phoneController,
+                          label: 'Telefone',
+                          formatter: TelefoneInputFormatter(),
+                    ),
                     ),
                   ],
                 ),
@@ -108,6 +114,7 @@ class _HomeState extends State<DetalhesCliente>
                   child: ElevatedButton(
                     onPressed: () {
                       _clienteBloc.EditarCliente(
+                        context,
                         widget.cliente?.id as int,
                         firstNameController.text,
                         lastNameController.text,
