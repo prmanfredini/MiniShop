@@ -26,6 +26,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       key: _key,
       extendBody: true,
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       appBar: AppBarBuilder(label, _key),
       drawer: DrawerBuilder(context),
       body: Padding(

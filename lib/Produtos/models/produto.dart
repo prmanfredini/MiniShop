@@ -1,48 +1,54 @@
-
 import 'package:flutter_pr/Produtos/models/suplier.dart';
 
 class Produto {
   final int id;
-  final String imagemPrincipal;
-  final bool isDiscontinued;
   final String name;
-  final String packageName;
-  final int supplierId;
-  final Suplier? supplier;
   final double unitPrice;
+  final String packageName;
+  final bool isDiscontinued;
+  final String? imagemPrincipal;
+  //final Suplier? supplier;
 
   Produto({
     required this.id,
-    required this.imagemPrincipal,
-    required this.isDiscontinued,
     required this.name,
-    required this.packageName,
-    required this.supplierId,
-    this.supplier,
     required this.unitPrice,
+    required this.packageName,
+    required this.isDiscontinued,
+    this.imagemPrincipal,
+    // this.supplier,
   });
 
-  Produto.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        imagemPrincipal = json['imagemPrincipal'],
-        isDiscontinued = json['isdiscontinued'],
-        packageName = json['packageName'],
-        name = json['name'],
-        supplier = Suplier.fromJson(json['supplier']),
-        supplierId = Suplier.fromJson(json['supplier']).id,
-        unitPrice = json['unitPrice'];
+  factory Produto.fromJson(Map<String, dynamic> json)
+  {
+      return Produto(
+          id: json['id'],
+          name: json['name'],
+          unitPrice: json['unitPrice'],
+          packageName: json['packageName'],
+          isDiscontinued: json['isdiscontinued'],
+          //supplier: Suplier.fromJson(json['supplier']),
+      );}
+      //   : id = json['id'],
+      //   name = json['name'],
+      //   unitPrice = json['unitPrice'],
+      //   packageName = json['packageName'],
+      //   isDiscontinued = json['isdiscontinued'],
+      //   imagemPrincipal = json['imagemPrincipal'];
+      //   // supplier = Suplier.fromJson(json['supplier']),
+      //   // supplierId = Suplier.fromJson(json['supplier']).id;
 
-  Map<String, dynamic> toJson() => {
-        //'id': id,
-        //'imagemPrincipal': imagemPrincipal,
-        'isDiscontinued': isDiscontinued,
-        'packageName': packageName,
-        'name': name,
-        //'supplier': supplier?.toJson(),
-        'supplierId': supplierId,
-        'unitPrice': unitPrice,
+  // Map<String, dynamic> toJson() => {
+  //       //'id': id,
+  //       //'imagemPrincipal': imagemPrincipal,
+  //       'isDiscontinued': isDiscontinued,
+  //       'packageName': packageName,
+  //       'name': name,
+  //       //'supplier': supplier?.toJson(),
+  //       //'supplierId': supplierId,
+  //       'unitPrice': unitPrice,
+  //     };
 
-      };
 }
 
 

@@ -16,13 +16,13 @@ class DetalheProduto extends StatelessWidget {
     isDiscontinued: false,
     name: 'Nome Produto',
     packageName: '10 caixas x 4 garrafas',
-    supplierId: 1,
-    supplier: Suplier(
-      id: 1,
-      city: 'sp',
-      companyName: 'wallmart',
-      phone: '99999999',
-    ),
+    // supplierId: 1,
+    // supplier: Suplier(
+    //   id: 1,
+    //   city: 'sp',
+    //   companyName: 'wallmart',
+    //   phone: '99999999',
+    // ),
     unitPrice: 10,
   );
 
@@ -125,10 +125,10 @@ class DetalheProduto extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Fornecedor: ${produto.supplier?.companyName ?? 'nome'}',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
+                          // Text(
+                          //   'Fornecedor: ${produto.supplier?.companyName ?? 'nome'}',
+                          //   style: TextStyle(fontSize: 20.0),
+                          // ),
                           Text(
                             'Pacote: ${produto.packageName}',
                             style: TextStyle(fontSize: 20.0),

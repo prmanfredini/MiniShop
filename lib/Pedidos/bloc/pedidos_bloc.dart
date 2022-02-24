@@ -1,26 +1,43 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Pedidos/models/pedido.dart';
+import 'package:flutter_pr/Pedidos/models/pedido_request.dart';
+import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
+import 'package:flutter_pr/Pedidos/models/purchase_items.dart';
 import 'package:flutter_pr/Pedidos/services/pedidos_service.dart';
 
-class PedidosBloc {
+enum StatePage { LOADING, DONE }
 
-  void salvarPedido(
-      String idComprador,
-      String numeroPedido,
-      String idProduto,
-      String quantidade,
-      GlobalKey<FormState> key,
-      BuildContext context) {
+class PedidosBloc {
+  PedidoService pedidoService = PedidoService();
+
+  final _pedidosController = StreamController<StatePage>.broadcast();
+
+  Stream<StatePage> get streamControllerPedidos => _pedidosController.stream;
+
+  Future<List<Pedido>> getPedidos() async {
+    _pedidosController.sink.add(StatePage.LOADING);
+    var res =
+        await pedidoService.getPedidos(0, 20).timeout(Duration(seconds: 1));
+    _pedidosController.sink.add(StatePage.DONE);
+    print('resBloc = ${res.toList()}');
+    if (res.isNotEmpty) {
+      return res;
+    }
+    return [];
+  }
+
+  void salvarPedido(String idComprador, String numeroPedido, String idProduto,
+      String quantidade, GlobalKey<FormState> key, BuildContext context) {
     if (key.currentState!.validate()) {
 
-      //get produtoById setar valorUnidade * quantidade = valorTotal do pedido
-      //get produtoById setar qual produto é * quantidade = valorTotal do pedido
-
-      var novo = Pedido(
-          orderDate: DateTime.now(),
-          orderNumber: '',
-          quantidade: int.parse(quantidade),
-          customerId: int.parse(idComprador),
+      var novo = PedidoRequest(
+        customerId: int.parse(idComprador),
+        orderNumber: numeroPedido,
+        purchaseItems: [
+          PurchaseItems(
+              productId: int.parse(idProduto), quantity: int.parse(quantidade))
+        ],
       );
 
       PedidoService().postPedido(novo);
@@ -43,4 +60,13 @@ class PedidosBloc {
     }
   }
 
+  void changeState() {
+    _pedidosController.sink.add(StatePage.LOADING);
+    Future.delayed(const Duration(seconds: 1));
+    _pedidosController.sink.add(StatePage.DONE);
+  }
+
+  void dispose() {
+    _pedidosController.close();
+  }
 }

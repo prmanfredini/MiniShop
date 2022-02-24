@@ -1,15 +1,16 @@
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
 class EditaProduto extends StatefulWidget {
-  final Produto? produto;
+  final Produto produto;
 
-  EditaProduto({this.produto});
+  EditaProduto({required this.produto});
 
   bool active = false;
   @override
@@ -18,7 +19,7 @@ class EditaProduto extends StatefulWidget {
 
 class _EditaProdutoState extends State<EditaProduto> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final ProdutosBloc pBloc = ProdutosBloc();
   var _controllerImage = TextEditingController();
   var _controllerNome = TextEditingController();
   var _controllerPacote = TextEditingController();
@@ -36,15 +37,15 @@ class _EditaProdutoState extends State<EditaProduto> {
   @override
   Widget build(BuildContext context) {
     if (widget.produto != null) {
-      if (widget.produto!.isDiscontinued){
+      if (widget.produto.isDiscontinued){
         ativado = 'Ativado';
       }
       //widget.active = widget.produto?.isDiscontinued ?? false;
-      _controllerNome.text = widget.produto?.name ?? '';
-      _controllerPacote.text = widget.produto?.packageName ?? '';
-      _controllerPreco.text = widget.produto?.unitPrice.toStringAsFixed(2) ?? '';
-      _controllerFornecedor.text =
-          widget.produto?.supplier?.id.toString() ?? '';
+      _controllerNome.text = widget.produto.name;
+      _controllerPacote.text = widget.produto.packageName;
+      _controllerPreco.text = widget.produto.unitPrice.toStringAsFixed(2);
+      _controllerFornecedor.text = '';
+          //widget.produto.supplier?.id.toString() ?? '';
     }
     return Scaffold(
       key: _scaffoldKey,
@@ -142,7 +143,15 @@ class _EditaProdutoState extends State<EditaProduto> {
               width: 120,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  pBloc.EditProduto(
+                      widget.produto.id,
+                      widget.active,
+                      _controllerNome.text,
+                      _controllerPacote.text,
+                      _controllerFornecedor.text,
+                      _controllerPreco.text,
+                      _key,
+                      context);
                   //clienteService().cadastrarCliente(cliente);
                 },
                 child: Text('Salvar'),

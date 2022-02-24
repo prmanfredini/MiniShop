@@ -84,7 +84,7 @@ class AddProduto extends StatelessWidget {
                                         Expanded(
                                           flex: 2,
                                           child: FormNumber(
-                                              _controllerPreco, 'Preço:'),
+                                              _controllerPreco, 'Preço:', length: 5),
                                         ),
                                         Padding(padding: EdgeInsets.all(8)),
                                         Expanded(
@@ -109,7 +109,6 @@ class AddProduto extends StatelessWidget {
               width: 120,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
                   pBloc.salvarProduto(
                       _controllerPreco.text,
                       _controllerNome.text,
@@ -118,7 +117,7 @@ class AddProduto extends StatelessWidget {
                       _controllerImage.text,
                       _key,
                       context);
-                  //clienteService().cadastrarCliente(cliente);
+                  Navigator.pop(context);
                 },
                 child: Text('Salvar'),
               ),
