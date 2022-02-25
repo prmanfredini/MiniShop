@@ -1,15 +1,11 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/clientes/models/cliente.dart';
-import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_text.dart';
 import 'package:flutter_pr/components/phone_form_field.dart';
 import 'package:flutter_pr/fornecedores/bloc/fornecedor_bloc.dart';
-import 'package:flutter_pr/fornecedores/models/fornecedor.dart';
-import 'package:flutter_pr/fornecedores/service/fornecedores_service.dart';
 
 class FornecedoresCadastro extends StatefulWidget {
   String? dropdownValue;

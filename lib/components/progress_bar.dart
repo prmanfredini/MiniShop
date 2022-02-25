@@ -15,7 +15,7 @@ class ProgressBar extends StatelessWidget {
           const CircularProgressIndicator(),
           Padding(
             padding: const EdgeInsets.only(top:8.0),
-            child: Text(mensagem, style: TextStyle(fontSize: 16),),
+            child: Text(mensagem, style: const TextStyle(fontSize: 16),),
           )
         ],
       ),

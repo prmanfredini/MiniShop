@@ -5,7 +5,6 @@ import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
 import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
 class EditaProduto extends StatefulWidget {
@@ -22,11 +21,11 @@ class EditaProduto extends StatefulWidget {
 class _EditaProdutoState extends State<EditaProduto> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ProdutosBloc pBloc = ProdutosBloc();
-  var _controllerImage = TextEditingController();
-  var _controllerNome = TextEditingController();
-  var _controllerPacote = TextEditingController();
-  var _controllerPreco = MoneyMaskedTextController(leftSymbol: 'R\$: ');
-  var _controllerFornecedor = TextEditingController();
+  final _controllerImage = TextEditingController();
+  final _controllerNome = TextEditingController();
+  final _controllerPacote = TextEditingController();
+  final _controllerPreco = MoneyMaskedTextController(leftSymbol: 'R\$: ');
+  final _controllerFornecedor = TextEditingController();
 
   var label = 'Editar do produto';
   String ativado = 'Desativado';
@@ -41,11 +40,6 @@ class _EditaProdutoState extends State<EditaProduto> {
 
   @override
   Widget build(BuildContext context) {
-    // if (widget.produto.isDiscontinued){
-    //   ativado = 'Ativado';
-    //
-    // }
-    //widget.active = widget.produto.isDiscontinued;
     _controllerNome.text = widget.produto.name;
     _controllerPacote.text = widget.produto.packageName;
     _controllerPreco.text = widget.produto.unitPrice.toStringAsFixed(2);
@@ -97,22 +91,22 @@ class _EditaProdutoState extends State<EditaProduto> {
                                             primary: Colors.grey),
                                         //style: ButtonStyle(backgroundColor: ),
                                         onPressed: () {},
-                                        child: Text('Escolher'),
+                                        child: const Text('Escolher'),
                                       )),
                                 ),
                                 Form(
                                   key: _key,
                                   child: Column(
                                     children: [
-                                      Padding(padding: EdgeInsets.all(4)),
+                                      const Padding(padding: EdgeInsets.all(4)),
                                       FormText(
                                           _controllerNome, 'Nome do Produto',
                                           read: true),
-                                      Padding(padding: EdgeInsets.all(4)),
+                                      const Padding(padding: EdgeInsets.all(4)),
                                       FormText(
                                           _controllerPacote, 'Nome do Pacote',
                                           read: true),
-                                      Padding(padding: EdgeInsets.all(4)),
+                                      const Padding(padding: EdgeInsets.all(4)),
                                       Row(
                                         children: [
                                           Expanded(
@@ -120,7 +114,7 @@ class _EditaProdutoState extends State<EditaProduto> {
                                               child: FormText(
                                                   _controllerPreco, 'Preço:',
                                                   read: true)),
-                                          Padding(padding: EdgeInsets.all(8)),
+                                          const Padding(padding: EdgeInsets.all(8)),
                                           Expanded(
                                               flex: 2,
                                               child: FormText(
@@ -184,7 +178,7 @@ class _EditaProdutoState extends State<EditaProduto> {
                         context);
                     //clienteService().cadastrarCliente(cliente);
                   },
-                  child: Text('Salvar'),
+                  child: const Text('Salvar'),
                 ),
               ),
             ],

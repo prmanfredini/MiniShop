@@ -66,20 +66,20 @@ class AddProduto extends StatelessWidget {
                                       suffix: ElevatedButton(
                                         //style: ButtonStyle(backgroundColor: ),
                                         onPressed: () {},
-                                        child: Text('Escolher'),
+                                        child: const Text('Escolher'),
                                       )),
                                 ),
                                 Form(
                                   key: _key,
                                   child: Column(
                                     children: [
-                                      Padding(padding: EdgeInsets.all(4)),
+                                      const Padding(padding: EdgeInsets.all(4)),
                                       FormText(
                                           _controllerNome, 'Nome do Produto'),
-                                      Padding(padding: EdgeInsets.all(4)),
+                                      const Padding(padding: EdgeInsets.all(4)),
                                       FormText(
                                           _controllerPacote, 'Nome do Pacote'),
-                                      Padding(padding: EdgeInsets.all(4)),
+                                      const Padding(padding: const EdgeInsets.all(4)),
                                       Row(
                                         children: [
                                           Expanded(
@@ -87,7 +87,7 @@ class AddProduto extends StatelessWidget {
                                             child: FormNumber(
                                                 _controllerPreco, 'Preço:', length: 5),
                                           ),
-                                          Padding(padding: EdgeInsets.all(8)),
+                                          const Padding(padding: const EdgeInsets.all(8)),
                                           Expanded(
                                             flex: 2,
                                             child: FormNumber(
@@ -120,7 +120,7 @@ class AddProduto extends StatelessWidget {
                         context);
                     Navigator.pop(context);
                   },
-                  child: Text('Salvar'),
+                  child: const Text('Salvar'),
                 ),
               ),
             ],

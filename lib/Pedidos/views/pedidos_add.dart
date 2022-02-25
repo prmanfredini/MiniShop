@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_numberOnly.dart';
-import 'package:flutter_pr/components/form_text.dart';
 
 class AddPedido extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var _controllerCustomerId = TextEditingController();
-  var _controllerOrderNumber = TextEditingController();
-  var _controllerProductId = TextEditingController();
-  var _controllerQuantity = TextEditingController();
+  final _controllerCustomerId = TextEditingController();
+  final _controllerOrderNumber = TextEditingController();
+  final _controllerProductId = TextEditingController();
+  final _controllerQuantity = TextEditingController();
 
   var label = 'Novo pedido';
   final _key = GlobalKey<FormState>();
@@ -52,23 +51,23 @@ class AddPedido extends StatelessWidget {
                                   key: _key,
                                   child: Column(
                                     children: [
-                                      FormText(_controllerCustomerId,
+                                      FormNumber(_controllerCustomerId,
                                           'Id do Comprador'),
-                                      Divider(),
-                                      FormText(_controllerOrderNumber,
+                                      const Divider(),
+                                      FormNumber(_controllerOrderNumber,
                                           'Número do pedido'),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         children: [
                                           Expanded(
                                               flex: 2,
-                                              child: FormText(
+                                              child: FormNumber(
                                                   _controllerProductId,
                                                   'Id do Produto')),
-                                          Padding(padding: EdgeInsets.all(8)),
+                                          const Padding(padding: EdgeInsets.all(8)),
                                           Expanded(
                                               flex: 2,
-                                              child: FormText(_controllerQuantity,
+                                              child: FormNumber(_controllerQuantity,
                                                   'Quantidade:')),
                                         ],
                                       ),
@@ -87,9 +86,9 @@ class AddPedido extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    //clienteService().cadastrarCliente(cliente);
+                    //pedidosService().novoPedido(pedido);
                   },
-                  child: Text('Salvar'),
+                  child: const Text('Salvar'),
                 ),
               ),
             ],

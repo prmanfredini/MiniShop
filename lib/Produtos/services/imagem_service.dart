@@ -6,14 +6,8 @@ class ImagemService {
 
   Future<List<Imagem>> getImagem(int id) async {
     Response response = await Dio().get('$baseURL/{productId}?productId=$id');
-    List<dynamic> res = response.data['objetoRetorno'] ?? [];
+    List<dynamic> res = response.data['objetoRetorno'];
     return res.map((dynamic json) => Imagem.fromJson(json)).toList();
-  }
-
-  Future<String> postProduto(String path, int id) async {
-    Response novaImagem = await Dio().post('$baseURL/upload/$id',
-        data: Imagem(path: path, productId: id).toJson());
-    return novaImagem.statusMessage.toString();
   }
 
   Future<String> putImage(int sequencia, int id) async {

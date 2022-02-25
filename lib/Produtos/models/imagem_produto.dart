@@ -10,11 +10,11 @@ class ProductImage {
 
   ProductImage.fromJson(Map<String, dynamic> json)
       : //id = json["id"],
-  //seqExibicao = json["seqExibicao"],
+        //seqExibicao = json["seqExibicao"],
         path = json["path"];
 
   Map<String, dynamic> toJson() => {""
-  // "id": id,
-  // "seqExibicao": seqExibicao,
+      // "id": id,
+      // "seqExibicao": seqExibicao,
       "path": path};
 }

@@ -31,9 +31,8 @@ InternationalPhoneNumberInput FormPhoneNumber(_controller, _label) {
 
   return InternationalPhoneNumberInput(
     onInputChanged: (PhoneNumber number) {
-      print(number.phoneNumber);
     },
-    selectorConfig: SelectorConfig(
+    selectorConfig: const SelectorConfig(
       selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
     ),
     ignoreBlank: false,

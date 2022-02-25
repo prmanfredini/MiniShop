@@ -5,8 +5,6 @@ import 'package:flutter_pr/Produtos/views/produtos_add.dart';
 import 'package:flutter_pr/Produtos/widgets/produtos_card.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/components/mensagem_centro.dart';
-import 'package:flutter_pr/components/progress_bar.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ProdutosView extends StatefulWidget {

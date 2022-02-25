@@ -32,7 +32,7 @@ class CardProdutos extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 0.0, bottom: 00),
-                    child: Image.network('${produto.imagemPrincipal ?? url}', height:100,),
+                    child: Image.network(produto.imagemPrincipal ?? url, height:100,),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

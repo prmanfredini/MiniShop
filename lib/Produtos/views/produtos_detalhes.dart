@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Home/home.dart';
 import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
 import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
 import 'package:flutter_pr/Produtos/models/objeto_response_id.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/Produtos/models/produto_response.dart';
-import 'package:flutter_pr/Produtos/models/suplier.dart';
 import 'package:flutter_pr/Produtos/views/produtos_edit.dart';
 import 'package:flutter_pr/components/mensagem_centro.dart';
 import 'package:flutter_pr/components/progress_bar.dart';
 
-import '../widgets/produtos_card.dart';
 
 class DetalheProduto extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -47,18 +43,17 @@ class DetalheProduto extends StatelessWidget {
                 case ConnectionState.waiting:
                   return ProgressBar();
                 case ConnectionState.done:
-                  return detalhes_card(produto);
+                  return Detalhes_card(produto);
               }
             }
             return CenteredMessage('não há produtos');
-            ;
           },
         ),
       ),
     );
   }
 
-  GridView detalhes_card(Produto? produto) {
+  GridView Detalhes_card(Produto? produto) {
     return GridView.builder(
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -88,7 +83,7 @@ class DetalheProduto extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                        child: SizedBox(
                           height: 180,
                           child: Image.network( produto?.imagens?.isEmpty == false ?
                           produto?.imagens?.first.path ?? '' : url
@@ -96,7 +91,7 @@ class DetalheProduto extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.all(8)),
+                      const Padding(padding: EdgeInsets.all(8)),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -119,10 +114,10 @@ class DetalheProduto extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(padding: EdgeInsets.all(8)),
+                  const Padding(padding: EdgeInsets.all(8)),
                   Text(
                     'R\$ ${produto?.unitPrice.toStringAsFixed(2) ?? 0}',
-                    style: TextStyle(fontSize: 32.0),
+                    style: const TextStyle(fontSize: 32.0),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 24.0, top: 16),
@@ -131,11 +126,11 @@ class DetalheProduto extends StatelessWidget {
                       children: [
                         Text(
                           'Fornecedor: ${produto?.supplier?.companyName ?? 'nome'}',
-                          style: TextStyle(fontSize: 20.0),
+                          style: const TextStyle(fontSize: 20.0),
                         ),
                         Text(
                           'Pacote: ${produto?.packageName ?? 'nome'}',
-                          style: TextStyle(fontSize: 20.0),
+                          style: const TextStyle(fontSize: 20.0),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,7 +145,7 @@ class DetalheProduto extends StatelessWidget {
                                 ),
                                 Text(
                                   prodBloc.getAtivo(produto),
-                                  style: TextStyle(fontSize: 24.0),
+                                  style: const TextStyle(fontSize: 24.0),
                                 ),
                               ],
                             ),
@@ -167,7 +162,7 @@ class DetalheProduto extends StatelessWidget {
                                                   )));
                                     },
                                     iconSize: 32,
-                                    icon: Icon(Icons.edit)))
+                                    icon: const Icon(Icons.edit)))
                           ],
                         ),
                       ],

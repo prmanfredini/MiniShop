@@ -1,4 +1,3 @@
-import 'package:flutter_pr/Produtos/models/suplier.dart';
 
 class ProdutoRequest {
   final bool isDiscontinued;

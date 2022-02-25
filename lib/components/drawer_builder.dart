@@ -5,15 +5,15 @@ import 'package:flutter_pr/Produtos/views/produtos_view.dart';
 import 'package:flutter_pr/clientes/views/cliente_view.dart';
 import 'package:flutter_pr/fornecedores/views/fornecedores_view.dart';
 
-Container DrawerBuilder(BuildContext context) {
-  return Container(
+SizedBox DrawerBuilder(BuildContext context) {
+  return SizedBox(
     width: 140,
     child: Drawer(
       backgroundColor: Theme.of(context).primaryColor,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          Container(
+          SizedBox(
             height: 155,
             child: DrawerHeader(
               padding: EdgeInsets.all(32),

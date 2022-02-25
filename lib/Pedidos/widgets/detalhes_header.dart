@@ -2,7 +2,6 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
 
-import '../views/detalhes_view.dart';
 
 class HeaderDetalhes extends StatelessWidget {
   Pedido pedido;
