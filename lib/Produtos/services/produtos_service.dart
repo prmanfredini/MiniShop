@@ -35,10 +35,12 @@ class ProdutoService {
   Future<String> postProduto(ProdutoRequest produto) async {
     print(produto.toJson());
     Response novoProduto = await Dio().post('$baseURL/create', data: produto.toJson());
-    print(novoProduto.data.toString());
 
-    return novoProduto.statusMessage.toString();
-
+    if(novoProduto.statusCode == 200){
+      return 'Produto cadastrado com Sucesso!';}
+    else {
+    return 'Não foi possível completar a requisiçao.\nCode Error: ${novoProduto.statusCode} - ${novoProduto.statusMessage}';
+    }
   }
 
   Future<String> putProduto(ProdutoRequest produto, int id) async {
@@ -46,7 +48,11 @@ class ProdutoService {
     Response novoProduto = await Dio().put('$baseURL/$id', data: produto.toJson());
     print(novoProduto.data.toString());
 
-    return novoProduto.statusMessage.toString();
+    if(novoProduto.statusCode == 200){
+      return 'Produto alterado com Sucesso!';}
+    else {
+      return 'Não foi possível completar a requisiçao.\nCode Error: ${novoProduto.statusCode} - ${novoProduto.statusMessage}';
+    }
 
   }
 

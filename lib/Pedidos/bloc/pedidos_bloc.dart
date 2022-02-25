@@ -45,24 +45,27 @@ class PedidosBloc {
         ],
       );
 
-      PedidoService().postPedido(novo);
+      PedidoService().postPedido(novo).then((value) => onComplete(context, value));
 
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text("Atenção"),
-              content: const Text('sucesso!'),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("OK")),
-              ],
-            );
-          });
     }
+  }
+
+  onComplete(BuildContext context, String msg) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Atenção"),
+            content: Text(msg),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("OK")),
+            ],
+          );
+        });
   }
 
   void changeState() {

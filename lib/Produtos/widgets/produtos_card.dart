@@ -6,7 +6,7 @@ class CardProdutos extends StatelessWidget {
   Produto produto;
 
   CardProdutos(this.produto);
-  var url = 'http://d2r9epyceweg5n.cloudfront.net/stores/108/456/products/placa-not-found1-4ee5886ac246fedc4992184d411d5c3b-640-0.jpg';
+  var url = 'https://cf.shopee.com.br/file/0b1107667b804bb7fc30002b9e994169';
 
   @override
   Widget build(BuildContext context) {

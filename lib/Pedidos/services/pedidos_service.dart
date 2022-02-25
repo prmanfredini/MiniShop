@@ -33,7 +33,11 @@ class PedidoService {
   Future<String> postPedido(PedidoRequest pedido) async {
     Response novoPedido = await Dio().post(baseURL, data: pedido.toJson());
 
-    return novoPedido.statusMessage.toString();
+    if(novoPedido.statusCode == 200){
+      return 'Pedido cadastrado com Sucesso!';}
+    else {
+      return 'Não foi possível completar a requisiçao.\nCode Error: ${novoPedido.statusCode} - ${novoPedido.statusMessage}';
+    }
 
   }
 
