@@ -35,9 +35,9 @@ class PedidosView extends StatelessWidget {
                       if (snapshot.hasData) {
                         switch (snapshot.connectionState) {
                           case ConnectionState.none:
-                            break;
+                            return CenteredMessage('não há pedidos');
                           case ConnectionState.active:
-                            break;
+                            return ProgressBar();
                           case ConnectionState.waiting:
                             return ProgressBar();
                           case ConnectionState.done:
@@ -50,7 +50,7 @@ class PedidosView extends StatelessWidget {
                                 });
                         }
                       }
-                      return CenteredMessage('não há pedidos');
+                      return ProgressBar();
                     },
                   ),
                 ),

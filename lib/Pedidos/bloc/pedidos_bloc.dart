@@ -20,7 +20,6 @@ class PedidosBloc {
     var res =
         await pedidoService.getPedidos(0, 20).timeout(Duration(seconds: 1));
     _pedidosController.sink.add(StatePage.DONE);
-    print('resBloc = ${res.toList()}');
     if (res.isNotEmpty) {
       return res;
     }

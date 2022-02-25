@@ -1,45 +1,21 @@
-import 'package:flutter_pr/Produtos/models/suplier.dart';
 
-class Produto {
-  final int id;
-  final String name;
-  final double unitPrice;
-  final String packageName;
-  final bool isDiscontinued;
-  final String? imagemPrincipal;
-  //final Suplier? supplier;
+import 'conteudo_response.dart';
 
-  Produto({
-    required this.id,
-    required this.name,
-    required this.unitPrice,
-    required this.packageName,
-    required this.isDiscontinued,
-    this.imagemPrincipal,
+class ObjetoRetorno {
+  final List<Produto> conteudo;
+  final int totalPages;
+  ObjetoRetorno({
+    required this.conteudo,
+    required this.totalPages,
     //this.supplier,
   });
 
-  Produto.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        unitPrice = json['unitPrice'],
-        packageName = json['packageName'],
-        isDiscontinued = json['isDiscontinued'],
-        imagemPrincipal = json['imagemPrincipal'];
-        //supplier = Suplier.fromJson(json['supplier']);
-        // supplierId = Suplier.fromJson(json['supplier']).id;
-
-  // Map<String, dynamic> toJson() => {
-  //       //'id': id,
-  //       //'imagemPrincipal': imagemPrincipal,
-  //       'isDiscontinued': isDiscontinued,
-  //       'packageName': packageName,
-  //       'name': name,
-  //       //'supplier': supplier?.toJson(),
-  //       //'supplierId': supplierId,
-  //       'unitPrice': unitPrice,
-  //     };
-
+  factory ObjetoRetorno.fromJson(Map<String, dynamic> json){
+    List<dynamic> prod = json['content'];
+      return ObjetoRetorno(
+          conteudo: prod.map((dynamic jsons) => Produto.fromJson(jsons)).toList(),
+          totalPages : json['totalPages']);
 }
 
+}
 

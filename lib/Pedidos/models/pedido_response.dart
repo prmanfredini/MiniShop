@@ -33,12 +33,6 @@ class Pedido {
     );
 
   }
-      // : id = json['id'],
-      //   orderDate = json['orderDate'],
-      //   orderNumber = json['orderNumber'],
-      //   totalAmount = json['totalAmount'],
-      //   customer = ClienteModel.fromJson(json['customer']),
-      //   orderItems = json['orderItems'].map((json) => OrderItems.fromJson(json)).toList();
 
 
 }

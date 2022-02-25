@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Home/home.dart';
 import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
+import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
+import 'package:flutter_pr/Produtos/models/objeto_response_id.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto_response.dart';
@@ -34,7 +36,8 @@ class DetalheProduto extends StatelessWidget {
         child: FutureBuilder(
           future: prodBloc.getProdutosById(produtoId),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            Produto? produto = snapshot.data;
+            ObjetoRetornoById? objetoRetorno = snapshot.data;
+            Produto? produto = objetoRetorno?.objetoRetorno;
             if (snapshot.hasData) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
@@ -44,7 +47,7 @@ class DetalheProduto extends StatelessWidget {
                 case ConnectionState.waiting:
                   return ProgressBar();
                 case ConnectionState.done:
-                  return detalhes_card(produto);
+                  return detalhes_card(produto!);
               }
             }
             return CenteredMessage('não há produtos');
@@ -55,7 +58,7 @@ class DetalheProduto extends StatelessWidget {
     );
   }
 
-  GridView detalhes_card(Produto? produto) {
+  GridView detalhes_card(Produto produto) {
     return GridView.builder(
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -77,7 +80,7 @@ class DetalheProduto extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        produto?.name ?? '',
+                        produto.name,
                         style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold),
                       ),
@@ -125,7 +128,7 @@ class DetalheProduto extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.all(8)),
                 Text(
-                  'R\$ ${produto?.unitPrice.toStringAsFixed(2) ?? '0'}',
+                  'R\$ ${produto.unitPrice.toStringAsFixed(2)}',
                   style: TextStyle(fontSize: 32.0),
                 ),
                 Padding(
@@ -133,12 +136,12 @@ class DetalheProduto extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   'Fornecedor: ${produto?.supplier?.companyName ?? 'nome'}',
-                      //   style: TextStyle(fontSize: 20.0),
-                      // ),
                       Text(
-                        'Pacote: ${produto?.packageName ?? ''}',
+                        'Fornecedor: ${produto.supplier?.companyName ?? 'nome'}',
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                      Text(
+                        'Pacote: ${produto.packageName}',
                         style: TextStyle(fontSize: 20.0),
                       ),
                       Row(
@@ -146,7 +149,7 @@ class DetalheProduto extends StatelessWidget {
                           Text(
                             '•',
                             style: TextStyle(
-                                color: prodBloc.getColor(produto!),
+                                color: prodBloc.getColor(produto),
                                 fontSize: 80),
                           ),
                           Text(

@@ -2,6 +2,7 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/Produtos/bloc/produtos_bloc.dart';
+import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/Produtos/models/produto_response.dart';

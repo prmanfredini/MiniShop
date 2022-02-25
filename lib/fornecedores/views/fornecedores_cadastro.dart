@@ -82,11 +82,11 @@ class _HomeState extends State<FornecedoresCadastro>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 140,
+                            width: MediaQuery.of(context).size.width * 0.32,
                             child: FormText(phoneController, _phone),
                           ),
                           SizedBox(
-                            width: 130,
+                            width: MediaQuery.of(context).size.width * 0.32,
                             child: FormText(faxController, _fax),
                           ),
                         ],
@@ -99,11 +99,11 @@ class _HomeState extends State<FornecedoresCadastro>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 140,
+                            width: MediaQuery.of(context).size.width * 0.32,
                             child: FormText(cityController, _city),
                           ),
                           SizedBox(
-                            width: 130,
+                            width: MediaQuery.of(context).size.width * 0.32,
                             child: FormText(countryController, _country),
                           ),
                         ],

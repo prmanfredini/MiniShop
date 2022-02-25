@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Produtos/models/produto_response.dart';
+import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
 import 'package:flutter_pr/Produtos/views/produtos_detalhes.dart';
 
 class CardProdutos extends StatelessWidget {

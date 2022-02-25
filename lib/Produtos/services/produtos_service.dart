@@ -2,29 +2,31 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
+import 'package:flutter_pr/Produtos/models/objeto_response_id.dart';
 import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/Produtos/models/produto_request.dart';
 
 class ProdutoService {
   final String baseURL = "http://lb-0-1388852470.sa-east-1.elb.amazonaws.com/api/products";
 
-  Future<List<Produto>> getProduto(int index, int qtd) async {
+  Future<ObjetoRetorno> getProduto(int index, int qtd) async {
     Response response = await Dio().get('$baseURL?index=$index&qtd=$qtd');
-    List<dynamic> res = response.data['objetoRetorno']['content'];
+    var res = response.data['objetoRetorno'];
 
     if (response.statusCode == 200) {
-      return res.map((dynamic json) => Produto.fromJson(json)).toList();
+      return ObjetoRetorno.fromJson(res);
     } else {
       throw "Server Error";
     }
   }
 
-  Future<Produto> getProdutoById(int idPedido) async {
+  Future<ObjetoRetornoById> getProdutoById(int idPedido) async {
     Response response = await Dio().get('$baseURL/$idPedido');
-    var res = response.data['objetoRetorno'];
+    var res = response.data;
 
     if (response.statusCode == 200) {
-    return Produto.fromJson(res);
+    return ObjetoRetornoById.fromJson(res);
     } else {
       throw "Server Error";
     }
