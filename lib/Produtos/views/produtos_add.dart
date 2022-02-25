@@ -30,99 +30,101 @@ class AddProduto extends StatelessWidget {
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: 4 / 4.3,
-                  ),
-                  physics: const ScrollPhysics(),
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      color: Colors.white,
-                      child: Container(
-                        color: Theme
-                            .of(context)
-                            .primaryColor,
-                        child: Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              TextFormField(
-                                controller: _controllerImage,
-                                decoration: InputDecoration(
-                                    labelText: 'Imagem do Produto',
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    suffix: ElevatedButton(
-                                      //style: ButtonStyle(backgroundColor: ),
-                                      onPressed: () {},
-                                      child: Text('Escolher'),
-                                    )),
-                              ),
-                              Form(
-                                key: _key,
-                                child: Column(
-                                  children: [
-                                    Padding(padding: EdgeInsets.all(4)),
-                                    FormText(
-                                        _controllerNome, 'Nome do Produto'),
-                                    Padding(padding: EdgeInsets.all(4)),
-                                    FormText(
-                                        _controllerPacote, 'Nome do Pacote'),
-                                    Padding(padding: EdgeInsets.all(4)),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 2,
-                                          child: FormNumber(
-                                              _controllerPreco, 'Preço:', length: 5),
-                                        ),
-                                        Padding(padding: EdgeInsets.all(8)),
-                                        Expanded(
-                                          flex: 2,
-                                          child: FormNumber(
-                                              _controllerFornecedor,
-                                              'Id do Fornecedor:'),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 4 / 4.3,
+                    ),
+                    physics: const ScrollPhysics(),
+                    itemCount: 1,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: Colors.white,
+                        child: Container(
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                TextFormField(
+                                  controller: _controllerImage,
+                                  decoration: InputDecoration(
+                                      labelText: 'Imagem do Produto',
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                      suffix: ElevatedButton(
+                                        //style: ButtonStyle(backgroundColor: ),
+                                        onPressed: () {},
+                                        child: Text('Escolher'),
+                                      )),
                                 ),
-                              ),
-                            ],
+                                Form(
+                                  key: _key,
+                                  child: Column(
+                                    children: [
+                                      Padding(padding: EdgeInsets.all(4)),
+                                      FormText(
+                                          _controllerNome, 'Nome do Produto'),
+                                      Padding(padding: EdgeInsets.all(4)),
+                                      FormText(
+                                          _controllerPacote, 'Nome do Pacote'),
+                                      Padding(padding: EdgeInsets.all(4)),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 2,
+                                            child: FormNumber(
+                                                _controllerPreco, 'Preço:', length: 5),
+                                          ),
+                                          Padding(padding: EdgeInsets.all(8)),
+                                          Expanded(
+                                            flex: 2,
+                                            child: FormNumber(
+                                                _controllerFornecedor,
+                                                'Id do Fornecedor:'),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-            ),
-            SizedBox(
-              width: 120,
-              child: ElevatedButton(
-                onPressed: () {
-                  pBloc.salvarProduto(
-                      _controllerPreco.text,
-                      _controllerNome.text,
-                      _controllerPacote.text,
-                      _controllerFornecedor.text,
-                      _controllerImage.text,
-                      _key,
-                      context);
-                  Navigator.pop(context);
-                },
-                child: Text('Salvar'),
+                      );
+                    }),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 120,
+                child: ElevatedButton(
+                  onPressed: () {
+                    pBloc.salvarProduto(
+                        _controllerPreco.text,
+                        _controllerNome.text,
+                        _controllerPacote.text,
+                        _controllerFornecedor.text,
+                        _controllerImage.text,
+                        _key,
+                        context);
+                    Navigator.pop(context);
+                  },
+                  child: Text('Salvar'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
