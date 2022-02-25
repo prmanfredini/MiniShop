@@ -23,8 +23,8 @@ class AddPedido extends StatelessWidget {
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Column(
             children: [
               Padding(
@@ -52,23 +52,23 @@ class AddPedido extends StatelessWidget {
                                   key: _key,
                                   child: Column(
                                     children: [
-                                      FormNumber(_controllerCustomerId,
+                                      FormText(_controllerCustomerId,
                                           'Id do Comprador'),
                                       Divider(),
-                                      FormNumber(_controllerOrderNumber,
+                                      FormText(_controllerOrderNumber,
                                           'Número do pedido'),
                                       Divider(),
                                       Row(
                                         children: [
                                           Expanded(
                                               flex: 2,
-                                              child: FormNumber(
+                                              child: FormText(
                                                   _controllerProductId,
                                                   'Id do Produto')),
                                           Padding(padding: EdgeInsets.all(8)),
                                           Expanded(
                                               flex: 2,
-                                              child: FormNumber(_controllerQuantity,
+                                              child: FormText(_controllerQuantity,
                                                   'Quantidade:')),
                                         ],
                                       ),

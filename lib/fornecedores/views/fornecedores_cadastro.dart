@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/models/cliente.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_pr/clientes/service/cliente_service.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_text.dart';
+import 'package:flutter_pr/components/phone_form_field.dart';
 import 'package:flutter_pr/fornecedores/bloc/fornecedor_bloc.dart';
 import 'package:flutter_pr/fornecedores/models/fornecedor.dart';
 import 'package:flutter_pr/fornecedores/service/fornecedores_service.dart';
@@ -83,11 +85,17 @@ class _HomeState extends State<FornecedoresCadastro>
                         children: [
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.32,
-                            child: FormText(phoneController, _phone),
+                            child: PhoneFormField(
+                                controller: phoneController,
+                                label: 'Telefone',
+                                formatter: TelefoneInputFormatter()),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.32,
-                            child: FormText(faxController, _fax),
+                            child: PhoneFormField(
+                                controller: faxController,
+                                label: 'Fax',
+                                formatter: TelefoneInputFormatter()),
                           ),
                         ],
                       ),
@@ -117,11 +125,11 @@ class _HomeState extends State<FornecedoresCadastro>
               padding:
                   const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
               child: SizedBox(
-                  width: 140,
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
                       _fornecedorBloc.cadastrarFornecedor(
+                        context,
                         0,
                         companyNameController.text,
                         contactNameController.text,

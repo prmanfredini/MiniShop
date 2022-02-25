@@ -30,8 +30,8 @@ class AddProduto extends StatelessWidget {
       extendBody: true,
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Column(
             children: [
               Padding(

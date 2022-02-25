@@ -36,6 +36,7 @@ dependencies:
   shared_preferences:
   intl_phone_number_input:
   infinite_scroll_pagination:
+  brasil_fields:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

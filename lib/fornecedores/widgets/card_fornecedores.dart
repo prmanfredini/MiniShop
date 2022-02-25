@@ -15,7 +15,7 @@ class CardFornecedor extends StatelessWidget {
     return ListView.builder(
         itemCount: fornecedor.length,
         scrollDirection: Axis.vertical,
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index){
           return Column(
@@ -30,7 +30,7 @@ class CardFornecedor extends StatelessWidget {
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>
                             DetalhesFornecedor(fornecedor: fornecedor[index])));
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: 250,
                         child: Column(children: [
                           ListTile(
@@ -43,7 +43,7 @@ class CardFornecedor extends StatelessWidget {
                               crossAxisAlignment:
                               CrossAxisAlignment.center,
                               children: [
-                                Icon(Icons.person),
+                                const Icon(Icons.person),
                                 Text(fornecedor[index].contactName),],
                             ),
                           ),
@@ -54,7 +54,7 @@ class CardFornecedor extends StatelessWidget {
                               crossAxisAlignment:
                               CrossAxisAlignment.center,
                               children: [
-                                Icon(Icons.phone),
+                                const Icon(Icons.phone),
                                 Text(fornecedor[index].phone),],
                             ),
                           ),
@@ -65,8 +65,10 @@ class CardFornecedor extends StatelessWidget {
                               crossAxisAlignment:
                               CrossAxisAlignment.center,
                               children: [
-                                Icon(Icons.place),
-                                Text(fornecedor[index].city + '-' + fornecedor[index].country),
+                                const Icon(Icons.place),
+                                SizedBox(
+                                    width: 200,
+                                    child: Text(fornecedor[index].city + '-' + fornecedor[index].country)),
                               ],
                             ),
                           ),
@@ -77,7 +79,10 @@ class CardFornecedor extends StatelessWidget {
                               crossAxisAlignment:
                               CrossAxisAlignment.center,
                               children: [
-                                Icon(Icons.print, size: 20.0),
+                                const Padding(
+                                  padding: EdgeInsets.only(right: 4.0),
+                                  child: Icon(Icons.print, size: 20.0),
+                                ),
                                 Text(fornecedor[index].fax ?? ' -- '),],
                             ),
                           ),
