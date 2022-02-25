@@ -27,28 +27,31 @@ class ProdutosBloc {
       return res;
   }
 
-
   Future<ObjetoRetornoById> getProdutosById(int idProduto) async {
     var res = await produtoService.getProdutoById(idProduto);
     return res;
   }
 
-  String getAtivo(Produto produto) {
+  String getAtivo(Produto? produto) {
     String ativo = '';
-    if (produto.isDiscontinued) {
-      ativo = 'Inativo';
-    } else {
-      ativo = 'Ativo';
+    if (produto != null) {
+      if (produto.isDiscontinued) {
+            ativo = 'Inativo';
+          } else {
+            ativo = 'Ativo';
+          }
     }
     return ativo;
   }
 
-  Color getColor(Produto produto) {
+  Color getColor(Produto? produto) {
     Color cor = Colors.grey;
-    if (produto.isDiscontinued) {
-      cor = Colors.grey;
-    } else {
-      cor = Colors.green;
+    if (produto != null) {
+      if (produto.isDiscontinued) {
+            cor = Colors.grey;
+          } else {
+            cor = Colors.green;
+          }
     }
     return cor;
   }

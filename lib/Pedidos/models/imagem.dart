@@ -14,10 +14,10 @@ class Imagem {
 
   factory Imagem.fromJson(dynamic json) {
     return Imagem(
-        id : json['id'] as int,
+        id : json['id'],
         path : json['path'],
-        productId : json['productId'] as int,
-        seqExibicao : json['seqExibicao'] as int);
+        productId : json['productId'],
+        seqExibicao : json['seqExibicao']);
   }
 
 

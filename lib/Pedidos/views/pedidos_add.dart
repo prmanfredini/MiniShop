@@ -36,44 +36,46 @@ class AddPedido extends StatelessWidget {
                   physics: const ScrollPhysics(),
                   itemCount: 1,
                   itemBuilder: (context, index) {
-                    return Card(
-                      color: Colors.white,
-                      child: Container(
-                        color: Theme.of(context).primaryColor,
-                        child: Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Form(
-                                key: _key,
-                                child: Column(
-                                  children: [
-                                    FormText(_controllerCustomerId,
-                                        'Id do Comprador'),
-                                    Divider(),
-                                    FormText(_controllerOrderNumber,
-                                        'Número do pedido'),
-                                    Divider(),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                            flex: 2,
-                                            child: FormText(
-                                                _controllerProductId,
-                                                'Id do Produto')),
-                                        Padding(padding: EdgeInsets.all(8)),
-                                        Expanded(
-                                            flex: 2,
-                                            child: FormText(_controllerQuantity,
-                                                'Quantidade:')),
-                                      ],
-                                    ),
-                                  ],
+                    return SingleChildScrollView(
+                      child: Card(
+                        color: Colors.white,
+                        child: Container(
+                          color: Theme.of(context).primaryColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Form(
+                                  key: _key,
+                                  child: Column(
+                                    children: [
+                                      FormText(_controllerCustomerId,
+                                          'Id do Comprador'),
+                                      Divider(),
+                                      FormText(_controllerOrderNumber,
+                                          'Número do pedido'),
+                                      Divider(),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                              flex: 2,
+                                              child: FormText(
+                                                  _controllerProductId,
+                                                  'Id do Produto')),
+                                          Padding(padding: EdgeInsets.all(8)),
+                                          Expanded(
+                                              flex: 2,
+                                              child: FormText(_controllerQuantity,
+                                                  'Quantidade:')),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

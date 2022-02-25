@@ -15,6 +15,7 @@ class ProdutosView extends StatefulWidget {
 }
 
 class _ProdutosViewState extends State<ProdutosView> {
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var label = 'Produtos';
   ProdutosBloc produtosBloc = ProdutosBloc();
@@ -84,7 +85,7 @@ class _ProdutosViewState extends State<ProdutosView> {
                 MaterialPageRoute(
                     builder: (BuildContext context) => AddProduto()));
           },
-          child: Icon(Icons.add, color: Colors.white),
+          child: const Icon(Icons.add, color: Colors.white),
         ));
   }
 }

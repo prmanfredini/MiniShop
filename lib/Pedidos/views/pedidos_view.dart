@@ -7,12 +7,39 @@ import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
 import 'package:flutter_pr/Pedidos/widgets/pedidos_card.dart';
 import 'package:flutter_pr/components/mensagem_centro.dart';
 import 'package:flutter_pr/components/progress_bar.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class PedidosView extends StatelessWidget {
+class PedidosView extends StatefulWidget {
+  @override
+  State<PedidosView> createState() => _PedidosViewState();
+}
+
+class _PedidosViewState extends State<PedidosView> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var label = 'Pedidos';
 
   PedidosBloc pedidosBloc = PedidosBloc();
+  final PagingController<int, Pedido> pedidosController =
+  PagingController(firstPageKey: 0);
+
+
+  @override
+  void initState() {
+    super.initState();
+    pedidosController.addPageRequestListener((pageKey) {
+      pedidosBloc.getPedidos(pageKey);
+    });
+    pedidosBloc.streamPagingState.listen((event) {
+      pedidosController.value = event;
+    });
+  }
+
+  @override
+  void dispose() {
+    pedidosBloc.dispose();
+    pedidosController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,31 +54,19 @@ class PedidosView extends StatelessWidget {
               SingleChildScrollView(
                 child: Container(
                   height: (MediaQuery.of(context).size.height) - 181,
-                  child: FutureBuilder(
-                    future: pedidosBloc.getPedidos(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<dynamic> snapshot) {
-                      List<Pedido> pedidos = snapshot.data ?? [];
-                      if (snapshot.hasData) {
-                        switch (snapshot.connectionState) {
-                          case ConnectionState.none:
-                            return CenteredMessage('não há pedidos');
-                          case ConnectionState.active:
-                            return ProgressBar();
-                          case ConnectionState.waiting:
-                            return ProgressBar();
-                          case ConnectionState.done:
-                            return ListView.builder(
-                                shrinkWrap: true,
-                                physics: const ScrollPhysics(),
-                                itemCount: pedidos.length,
-                                itemBuilder: (context, index) {
-                                  return CardPedidos(pedidos[index]);
-                                });
-                        }
-                      }
-                      return ProgressBar();
-                    },
+                  child: PagedGridView(
+                    pagingController: pedidosController,
+                    builderDelegate:
+                    PagedChildBuilderDelegate<Pedido>(
+                      itemBuilder: (context, item, index) {
+                        return CardPedidos(item);
+                      },
+                    ),
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 2/ 1.1,
+                    ),
                   ),
                 ),
               ),
