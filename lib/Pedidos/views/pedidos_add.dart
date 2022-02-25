@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
+import 'package:flutter_pr/components/form_numberOnly.dart';
 import 'package:flutter_pr/components/form_text.dart';
 
 class AddPedido extends StatelessWidget {
@@ -23,21 +24,21 @@ class AddPedido extends StatelessWidget {
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: 4 / 3.5,
-                  ),
-                  physics: const ScrollPhysics(),
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return SingleChildScrollView(
-                      child: Card(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 4 / 3.5,
+                    ),
+                    physics: const ScrollPhysics(),
+                    itemCount: 1,
+                    itemBuilder: (context, index) {
+                      return Card(
                         color: Colors.white,
                         child: Container(
                           color: Theme.of(context).primaryColor,
@@ -51,23 +52,23 @@ class AddPedido extends StatelessWidget {
                                   key: _key,
                                   child: Column(
                                     children: [
-                                      FormText(_controllerCustomerId,
+                                      FormNumber(_controllerCustomerId,
                                           'Id do Comprador'),
                                       Divider(),
-                                      FormText(_controllerOrderNumber,
+                                      FormNumber(_controllerOrderNumber,
                                           'Número do pedido'),
                                       Divider(),
                                       Row(
                                         children: [
                                           Expanded(
                                               flex: 2,
-                                              child: FormText(
+                                              child: FormNumber(
                                                   _controllerProductId,
                                                   'Id do Produto')),
                                           Padding(padding: EdgeInsets.all(8)),
                                           Expanded(
                                               flex: 2,
-                                              child: FormText(_controllerQuantity,
+                                              child: FormNumber(_controllerQuantity,
                                                   'Quantidade:')),
                                         ],
                                       ),
@@ -78,21 +79,21 @@ class AddPedido extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-            ),
-            SizedBox(
-              width: 120,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  //clienteService().cadastrarCliente(cliente);
-                },
-                child: Text('Salvar'),
+                      );
+                    }),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 120,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    //clienteService().cadastrarCliente(cliente);
+                  },
+                  child: Text('Salvar'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

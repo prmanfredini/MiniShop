@@ -6,7 +6,6 @@ import 'package:flutter_pr/Pedidos/models/pedido_request.dart';
 import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
 import 'package:flutter_pr/Pedidos/models/purchase_items.dart';
 import 'package:flutter_pr/Pedidos/services/pedidos_service.dart';
-import 'package:flutter_pr/Produtos/models/conteudo_response.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 enum StatePage { LOADING, DONE }

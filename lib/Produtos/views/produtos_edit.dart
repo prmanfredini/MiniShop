@@ -14,6 +14,7 @@ class EditaProduto extends StatefulWidget {
   EditaProduto({required this.produto});
 
   bool active = false;
+
   @override
   State<EditaProduto> createState() => _EditaProdutoState();
 }
@@ -38,19 +39,17 @@ class _EditaProdutoState extends State<EditaProduto> {
     widget.active = widget.produto.isDiscontinued;
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-      // if (widget.produto.isDiscontinued){
-      //   ativado = 'Ativado';
-      //
-      // }
-      //widget.active = widget.produto.isDiscontinued;
-      _controllerNome.text = widget.produto.name;
-      _controllerPacote.text = widget.produto.packageName;
-      _controllerPreco.text = widget.produto.unitPrice.toStringAsFixed(2);
-      _controllerFornecedor.text = widget.produto.supplier?.id.toString() ?? '0';
+    // if (widget.produto.isDiscontinued){
+    //   ativado = 'Ativado';
+    //
+    // }
+    //widget.active = widget.produto.isDiscontinued;
+    _controllerNome.text = widget.produto.name;
+    _controllerPacote.text = widget.produto.packageName;
+    _controllerPreco.text = widget.produto.unitPrice.toStringAsFixed(2);
+    _controllerFornecedor.text = widget.produto.supplier?.id.toString() ?? '0';
 
     return Scaffold(
       key: _scaffoldKey,
@@ -59,26 +58,28 @@ class _EditaProdutoState extends State<EditaProduto> {
       appBar: AppBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: 4 / 4.6,
-                  ),
-                  physics: const ScrollPhysics(),
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return SingleChildScrollView(
-                      child: Card(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 4 / 4.6,
+                    ),
+                    physics: const ScrollPhysics(),
+                    itemCount: 1,
+                    itemBuilder: (context, index) {
+                      return Card(
                         color: Colors.white,
                         child: Container(
                           color: Theme.of(context).primaryColor,
                           child: Padding(
-                            padding: const EdgeInsets.only(top:36.0,left: 36,right: 36),
+                            padding: const EdgeInsets.only(
+                                top: 36.0, left: 36, right: 36),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,10 +87,13 @@ class _EditaProdutoState extends State<EditaProduto> {
                                 TextFormField(
                                   controller: _controllerImage,
                                   decoration: InputDecoration(
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.always,
                                       labelText: 'Imagem do Produto',
                                       fillColor: Colors.white,
                                       filled: true,
                                       suffix: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(primary: Colors.grey),
                                         //style: ButtonStyle(backgroundColor: ),
                                         onPressed: () {},
                                         child: Text('Escolher'),
@@ -100,10 +104,12 @@ class _EditaProdutoState extends State<EditaProduto> {
                                   child: Column(
                                     children: [
                                       Padding(padding: EdgeInsets.all(4)),
-                                      FormText(_controllerNome, 'Nome do Produto',
+                                      FormText(
+                                          _controllerNome, 'Nome do Produto',
                                           read: true),
                                       Padding(padding: EdgeInsets.all(4)),
-                                      FormText(_controllerPacote, 'Nome do Pacote',
+                                      FormText(
+                                          _controllerPacote, 'Nome do Pacote',
                                           read: true),
                                       Padding(padding: EdgeInsets.all(4)),
                                       Row(
@@ -130,15 +136,27 @@ class _EditaProdutoState extends State<EditaProduto> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Padding(
-                                      padding: EdgeInsets.only(top:16.0),
-                                      child: Text('Ativado', style: TextStyle(color: Colors.white),),
+                                      padding: EdgeInsets.only(top: 16.0),
+                                      child: Text(
+                                        'Ativado',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
-                                    Switch(activeColor: Colors.grey, inactiveTrackColor: Colors.green, value: widget.active, onChanged: (_) {setState(() {
-                                      widget.active = !widget.active;
-                                    });}),
+                                    Switch(
+                                        activeColor: Colors.grey,
+                                        inactiveTrackColor: Colors.green,
+                                        value: widget.active,
+                                        onChanged: (_) {
+                                          setState(() {
+                                            widget.active = !widget.active;
+                                          });
+                                        }),
                                     const Padding(
-                                      padding: EdgeInsets.only(top:16.0),
-                                      child: Text('Desativado', style: TextStyle(color: Colors.white),),
+                                      padding: EdgeInsets.only(top: 16.0),
+                                      child: Text(
+                                        'Desativado',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -146,30 +164,30 @@ class _EditaProdutoState extends State<EditaProduto> {
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-            ),
-            SizedBox(
-              width: 120,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {});
-                  pBloc.EditProduto(
-                      widget.produto.id,
-                      widget.active,
-                      _controllerNome.text,
-                      _controllerPacote.text,
-                      _controllerFornecedor.text,
-                      _controllerPreco.text,
-                      _key,
-                      context);
-                  //clienteService().cadastrarCliente(cliente);
-                },
-                child: Text('Salvar'),
+                      );
+                    }),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 120,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                    pBloc.EditProduto(
+                        widget.produto.id,
+                        widget.active,
+                        _controllerNome.text,
+                        _controllerPacote.text,
+                        _controllerFornecedor.text,
+                        _controllerPreco.text,
+                        _key,
+                        context);
+                    //clienteService().cadastrarCliente(cliente);
+                  },
+                  child: Text('Salvar'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

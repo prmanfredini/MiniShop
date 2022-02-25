@@ -21,7 +21,6 @@ class DetalheProduto extends StatelessWidget {
 
   ProdutosBloc prodBloc = ProdutosBloc();
   var url = 'http://d2r9epyceweg5n.cloudfront.net/stores/108/456/products/placa-not-found1-4ee5886ac246fedc4992184d411d5c3b-640-0.jpg';
-
   var label = 'Detalhes do produto';
 
   @override
@@ -91,8 +90,9 @@ class DetalheProduto extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           height: 180,
-                          child: Image.network(
-                            produto?.imagens?[0].path ?? ''
+                          child: Image.network( produto?.imagens?.isEmpty == false ?
+                          produto?.imagens?.first.path ?? '' : url
+
                           ),
                         ),
                       ),
