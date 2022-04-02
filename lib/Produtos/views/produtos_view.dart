@@ -8,18 +8,18 @@ import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ProdutosView extends StatefulWidget {
+  const ProdutosView({Key? key}) : super(key: key);
+
   @override
   State<ProdutosView> createState() => _ProdutosViewState();
 }
 
 class _ProdutosViewState extends State<ProdutosView> {
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Produtos';
-  ProdutosBloc produtosBloc = ProdutosBloc();
+  final String label = 'Produtos';
+  final ProdutosBloc produtosBloc = ProdutosBloc();
   final PagingController<int, Produto> pagingController =
       PagingController(firstPageKey: 0);
-
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _ProdutosViewState extends State<ProdutosView> {
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Theme.of(context).secondaryHeaderColor,
-        appBar: AppBarBuilder(label, _scaffoldKey),
+        appBar: appBarBuilder(label, _scaffoldKey),
         drawer: DrawerBuilder(context),
         body: SafeArea(
           child: Column(
@@ -55,14 +55,13 @@ class _ProdutosViewState extends State<ProdutosView> {
                   padding: const EdgeInsets.all(24.0),
                   child: PagedGridView(
                     pagingController: pagingController,
-                    builderDelegate:
-                    PagedChildBuilderDelegate<Produto>(
+                    builderDelegate: PagedChildBuilderDelegate<Produto>(
                       itemBuilder: (context, item, index) {
                         return CardProdutos(item);
                       },
                     ),
                     gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 24,
                       crossAxisSpacing: 24,
@@ -81,7 +80,7 @@ class _ProdutosViewState extends State<ProdutosView> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => AddProduto()));
+                    builder: (BuildContext context) => const AddProduto()));
           },
           child: const Icon(Icons.add, color: Colors.white),
         ));

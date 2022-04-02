@@ -11,20 +11,18 @@ class Imagem {
     this.seqExibicao,
   });
 
-
   factory Imagem.fromJson(dynamic json) {
     return Imagem(
-        id : json['id'],
-        path : json['path'],
-        productId : json['productId'],
-        seqExibicao : json['seqExibicao']);
+        id: json['id'],
+        path: json['path'],
+        productId: json['productId'],
+        seqExibicao: json['seqExibicao']);
   }
 
-
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'path': path,
-    'productId': productId,
-    'seqExibicao': seqExibicao,
-  };
+        'id': id,
+        'path': path,
+        'productId': productId,
+        'seqExibicao': seqExibicao,
+      };
 }

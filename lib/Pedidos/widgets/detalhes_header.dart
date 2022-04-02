@@ -1,16 +1,20 @@
 import 'package:date_format/date_format.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
+import 'package:flutter_pr/Pedidos/models/pedido_response_by_id.dart';
 
 
 class HeaderDetalhes extends StatelessWidget {
-  Pedido pedido;
+  PedidoById? pedido;
 
-  HeaderDetalhes(this.pedido);
+  HeaderDetalhes(this.pedido, {Key? key}) : super(key: key);
+
+  var valor = MoneyMaskedTextController(leftSymbol: 'R\$ ');
 
   @override
   Widget build(BuildContext context) {
-    final _data = formatDate(pedido.orderDate, [dd, '/', mm, '/', yyyy]);
+    valor.text = pedido?.totalAmount.toStringAsFixed(2) ?? '0';
+    final _data = formatDate((pedido?.orderDate ?? DateTime.now()), [dd, '/', mm, '/', yyyy]);
     return Padding(
       padding: const EdgeInsets.only(left: 48.0, right: 48, top: 24),
       child: Card(
@@ -26,15 +30,15 @@ class HeaderDetalhes extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pedido ${pedido.orderNumber}'),
+                      Text('Pedido ${pedido?.orderNumber ?? 0}'),
                       const Padding(padding: EdgeInsets.all(4)),
                       const Text(
                         'Cliente: ',
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
-                          '${pedido.customer.firstName} '
-                              '${pedido.customer.lastName}'),
+                          '${pedido?.customer.firstName ?? 'Nome'} '
+                              '${pedido?.customer.lastName ?? 'Sobrenome'}'),
                       const Padding(padding: EdgeInsets.all(4)),
                       const Text(
                         'Data: ',
@@ -51,8 +55,7 @@ class HeaderDetalhes extends StatelessWidget {
                         'Total:',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Text(
-                          'R\$: ${pedido.totalAmount.toStringAsFixed(2)}'),
+                      Text(valor.text),
                     ],
                   ),
                 ],

@@ -1,4 +1,3 @@
-
 class ProdutoRequest {
   final bool isDiscontinued;
   final String name;
@@ -14,24 +13,20 @@ class ProdutoRequest {
     required this.unitPrice,
   });
 
-  factory ProdutoRequest.fromJson(Map<String, dynamic> json)
-  {
+  factory ProdutoRequest.fromJson(Map<String, dynamic> json) {
     return ProdutoRequest(
         isDiscontinued: json['isdiscontinued'],
         name: json['name'],
         packageName: json['packageName'],
         supplierId: json['supplierId'],
-        unitPrice: json['unitPrice']);}
-
+        unitPrice: json['unitPrice']);
+  }
 
   Map<String, dynamic> toJson() => {
-    'isDiscontinued': isDiscontinued,
-    'name': name,
-    'packageName': packageName,
-    'supplierId': supplierId,
-    'unitPrice': unitPrice,
-  };
-
+        'isDiscontinued': isDiscontinued,
+        'name': name,
+        'packageName': packageName,
+        'supplierId': supplierId,
+        'unitPrice': unitPrice,
+      };
 }
-
-

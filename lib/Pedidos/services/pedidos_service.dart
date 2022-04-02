@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_pr/Pedidos/models/objeto_response.dart';
 import 'package:flutter_pr/Pedidos/models/pedido_request.dart';
-import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
+import 'package:flutter_pr/Pedidos/models/pedido_response_by_id.dart';
 
 class PedidoService {
+    //criar novo link de mock no apiary com os responses do json para teste
   final String baseURL =
-      "http://lb-0-1388852470.sa-east-1.elb.amazonaws.com/api/orders";
+      "https://private-b79b2-minishop.apiary-mock.com/api/orders";
 
   Future<Objeto> getPedidos(int index, int qtd) async {
     Response response = await Dio().get('$baseURL?index=$index&qtd=$qtd');
@@ -18,12 +19,12 @@ class PedidoService {
     }
   }
 
-  Future<Pedido> getPedidoById(int idPedido) async {
+  Future<PedidoById> getPedidosById(int idPedido) async {
     Response response = await Dio().get('$baseURL/$idPedido');
-    var res = response.data;
+    var res = response.data['objetoRetorno'];
 
     if (response.statusCode == 200) {
-      return Pedido.fromJson(res);
+      return PedidoById.fromJson(res);
     } else {
       throw "Server Error";
     }
@@ -35,7 +36,8 @@ class PedidoService {
     if (novoPedido.statusCode == 200) {
       return 'Pedido cadastrado com Sucesso!';
     } else {
-      return 'Não foi possível completar a requisiçao.\nCode Error: ${novoPedido.statusCode} - ${novoPedido.statusMessage}';
+      return 'Não foi possível completar a requisiçao.\nCode Error:'
+          ' ${novoPedido.statusCode} - ${novoPedido.statusMessage}';
     }
   }
 }

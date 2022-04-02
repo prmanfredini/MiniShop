@@ -22,22 +22,22 @@ class Produto {
     this.supplier,
   });
 
-  factory Produto.fromJson(Map<String, dynamic> json){
+  factory Produto.fromJson(Map<String, dynamic> json) {
     final supplierJson = json['supplier'];
-    final supplier = supplierJson == null ? null : Suplier.fromJson(supplierJson);
+    final supplier =
+        supplierJson == null ? null : Suplier.fromJson(supplierJson);
     final imgJson = json['imagens'];
     List<dynamic> imagensJson = imgJson ?? [];
-    final imagens = imagensJson.map((dynamic json) => Imagem.fromJson(json)).toList();
+    final imagens =
+        imagensJson.map((dynamic json) => Imagem.fromJson(json)).toList();
     return Produto(
-        id : json['id'],
-        name : json['name'],
-        unitPrice : json['unitPrice'],
-        packageName : json['packageName'],
-        isDiscontinued : json['isDiscontinued'],
-        imagemPrincipal : json['imagemPrincipal'],
+        id: json['id'],
+        name: json['name'],
+        unitPrice: json['unitPrice'],
+        packageName: json['packageName'],
+        isDiscontinued: json['isDiscontinued'],
+        imagemPrincipal: json['imagemPrincipal'],
         imagens: imagens,
-        supplier : supplier);
+        supplier: supplier);
   }
-
 }
-

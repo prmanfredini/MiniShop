@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
 
-TextFormField FormText(_controller, _label, {read = false}) {
-  return TextFormField(
-    controller: _controller,
-    validator: (value) {
-      if (value == null || value.isEmpty) {
-        return 'Este campo não pode estar em branco';
-      }
-      return null;
-    },
-    readOnly: read,
-    scrollPadding: EdgeInsets.zero,
-    decoration: InputDecoration(
-      labelText: _label,
-      fillColor: Colors.white,
-      filled: true,
-      floatingLabelBehavior:FloatingLabelBehavior.always,
-    ),
-  );
+class FormText extends StatelessWidget{
+  final TextEditingController controller;
+  final String label;
+
+  const FormText(this.controller, this.label, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Não pode estar em branco';
+        }
+        return null;
+      },
+      scrollPadding: EdgeInsets.zero,
+      decoration: InputDecoration(
+        errorMaxLines: 2,
+        labelText: label,
+        fillColor: Colors.white,
+        filled: true,
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    );
+  }
+
+
 }
+

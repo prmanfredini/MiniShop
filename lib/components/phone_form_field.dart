@@ -6,32 +6,33 @@ class PhoneFormField extends StatelessWidget {
   final TextInputFormatter formatter;
   final TextEditingController controller;
 
-  PhoneFormField({
+  const PhoneFormField({Key? key,
     required this.controller,
     required this.label,
     required this.formatter,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => TextFormField(
-    controller: controller,
-    validator: (value) {
-      if (value == null || value.isEmpty) {
-        return 'Este campo não pode estar em branco';
-      }
-      return null;
-    },
-    scrollPadding: EdgeInsets.zero,
-    keyboardType: TextInputType.phone,
-    decoration: InputDecoration(
-      labelText: label,
-      fillColor: Colors.white,
-      filled: true,
-      floatingLabelBehavior:FloatingLabelBehavior.always,
-    ),
-    inputFormatters: [
-      FilteringTextInputFormatter.digitsOnly,
-      formatter,
-    ],
-  );
+        controller: controller,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Não pode estar em branco';
+          }
+          return null;
+        },
+        scrollPadding: EdgeInsets.zero,
+        keyboardType: TextInputType.phone,
+        decoration: InputDecoration(
+          errorMaxLines: 2,
+          labelText: label,
+          fillColor: Colors.white,
+          filled: true,
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+        ),
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          formatter,
+        ],
+      );
 }

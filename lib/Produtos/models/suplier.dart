@@ -1,4 +1,3 @@
-
 class Suplier {
   final int id;
   final String city;
@@ -19,9 +18,9 @@ class Suplier {
         phone = json['phone'];
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'city': city,
-    'companyName': companyName,
-    'phone': phone,
-  };
+        'id': id,
+        'city': city,
+        'companyName': companyName,
+        'phone': phone,
+      };
 }

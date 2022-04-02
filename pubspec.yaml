@@ -34,7 +34,6 @@ dependencies:
   extended_masked_text:
   intl:
   shared_preferences:
-  intl_phone_number_input:
   infinite_scroll_pagination:
   brasil_fields:
 

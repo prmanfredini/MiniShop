@@ -1,38 +1,29 @@
-
-import 'package:flutter_pr/clientes/models/cliente.dart';
-
-import 'order_items.dart';
+import 'package:flutter_pr/clientes/models/cliente_by_id.dart';
 
 class Pedido {
   final int id;
   final DateTime orderDate;
-  final String orderNumber;
   final double totalAmount;
-  final ClienteModel customer;
-  final List<OrderItems> orderItems;
+  final Cliente customer;
+  final int quantidadeProdutos;
 
   Pedido({
     required this.id,
     required this.orderDate,
-    required this.orderNumber,
     required this.totalAmount,
     required this.customer,
-    required this.orderItems,
+    required this.quantidadeProdutos,
   });
 
-
-  factory Pedido.fromJson(Map<String, dynamic> json){
-    List<dynamic> orderItems = json['orderItems'];
+  factory Pedido.fromJson(Map<String, dynamic> json) {
     return Pedido(
-         id : json['id'],
-         orderDate : DateTime.parse(json['orderDate']),
-         orderNumber : json['orderNumber'],
-         totalAmount : json['totalAmount'],
-         customer : ClienteModel.fromJson(json['customer']),
-         orderItems : orderItems.map((json) => OrderItems.fromJson(json)).toList(),
+      id: json['id'],
+      orderDate: DateTime.parse(json['orderDate']),
+      totalAmount: json['totalAmount'],
+      customer: Cliente.fromJson(json['customerId']),
+      quantidadeProdutos: json['quantidadeProdutos'],
     );
-
   }
-
-
 }
+
+

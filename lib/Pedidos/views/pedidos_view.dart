@@ -8,18 +8,19 @@ import 'package:flutter_pr/Pedidos/widgets/pedidos_card.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class PedidosView extends StatefulWidget {
+  const PedidosView({Key? key}) : super(key: key);
+
   @override
   State<PedidosView> createState() => _PedidosViewState();
 }
 
 class _PedidosViewState extends State<PedidosView> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Pedidos';
+  final label = 'Pedidos';
 
   PedidosBloc pedidosBloc = PedidosBloc();
   final PagingController<int, Pedido> pedidosController =
-  PagingController(firstPageKey: 0);
-
+      PagingController(firstPageKey: 0);
 
   @override
   void initState() {
@@ -44,7 +45,7 @@ class _PedidosViewState extends State<PedidosView> {
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Theme.of(context).secondaryHeaderColor,
-        appBar: AppBarBuilder(label, _scaffoldKey),
+        appBar: appBarBuilder(label, _scaffoldKey),
         drawer: DrawerBuilder(context),
         body: SafeArea(
           child: Column(
@@ -54,16 +55,15 @@ class _PedidosViewState extends State<PedidosView> {
                   height: (MediaQuery.of(context).size.height) - 181,
                   child: PagedGridView(
                     pagingController: pedidosController,
-                    builderDelegate:
-                    PagedChildBuilderDelegate<Pedido>(
+                    builderDelegate: PagedChildBuilderDelegate<Pedido>(
                       itemBuilder: (context, item, index) {
                         return CardPedidos(item);
                       },
                     ),
                     gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
-                      childAspectRatio: 2/ 1.1,
+                      childAspectRatio: 2 / 1.1,
                     ),
                   ),
                 ),

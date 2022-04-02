@@ -1,24 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pr/clientes/bloc/clientes_bloc.dart';
+import 'package:flutter_pr/clientes/models/cliente.dart';
+import 'package:flutter_pr/clientes/widgets/card_clientes.dart';
 import 'package:flutter_pr/components/appbar.dart';
 import 'package:flutter_pr/components/drawer_builder.dart';
-import 'package:flutter_pr/clientes/views/client.dart';
 import 'package:flutter_pr/clientes/views/cliente_cadastro.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ClienteView extends StatefulWidget {
-  String? dropdownValue;
+  const ClienteView({Key? key}) : super(key: key);
 
   @override
-  State<ClienteView> createState() => _HomeState();
+  State<ClienteView> createState() => _ClienteViewState();
 }
 
-class _HomeState extends State<ClienteView>
-    with SingleTickerProviderStateMixin {
+class _ClienteViewState extends State<ClienteView> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Clientes';
+  final label = 'Clientes';
+
+  ClienteBloc clienteBloc = ClienteBloc();
+  final PagingController<int, ClienteModel> clientesController =
+      PagingController(firstPageKey: 0);
 
   @override
   void initState() {
     super.initState();
+    clientesController.addPageRequestListener((pageKey) {
+      clienteBloc.getClientes(pageKey);
+    });
+    clienteBloc.streamPagingState.listen((event) {
+      clientesController.value = event;
+    });
+  }
+
+  @override
+  void dispose() {
+    clienteBloc.dispose();
+    clientesController.dispose();
+    super.dispose();
   }
 
   @override
@@ -26,24 +45,33 @@ class _HomeState extends State<ClienteView>
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).secondaryHeaderColor,
-      extendBody: true,
-      appBar: AppBarBuilder(label, _scaffoldKey),
+      appBar: appBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              CardClientes(),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: (MediaQuery.of(context).size.height) - 181,
+            child: PagedGridView(
+              pagingController: clientesController,
+              builderDelegate: PagedChildBuilderDelegate<ClienteModel>(
+                itemBuilder: (context, item, index) {
+                  return CardCliente(item);
+                },
+              ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio: 2.3,
+              ),
+            ),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton.small(
+        tooltip: 'Cadastrar',
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
-            MaterialPageRoute<void>(
+            MaterialPageRoute(
               builder: (BuildContext context) => ClienteCadastro(),
             ),
           );

@@ -1,15 +1,16 @@
-import 'package:date_format/date_format.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pr/Pedidos/models/pedido_response.dart';
+import 'package:flutter_pr/Pedidos/models/pedido_response_by_id.dart';
 
 class CardDetalhes extends StatelessWidget {
-  Pedido pedido;
+  PedidoById? pedido;
 
-  CardDetalhes(this.pedido);
+  CardDetalhes(this.pedido, {Key? key}) : super(key: key);
+
+  var valor = MoneyMaskedTextController(leftSymbol: 'R\$ ');
 
   @override
   Widget build(BuildContext context) {
-    final _data = formatDate(pedido.orderDate, [dd, '/', mm, '/', yyyy]);
     return Padding(
       padding: const EdgeInsets.only(left: 48.0, right: 48, top: 24),
       child: Card(
@@ -54,24 +55,30 @@ class CardDetalhes extends StatelessWidget {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: pedido.orderItems.length,
+                      itemCount: pedido?.orderItems.length ?? 0,
                       itemBuilder: (context, index) {
+                        valor.text = pedido?.orderItems[index].unitPrice.toStringAsFixed(2) ?? '0';
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
-                                flex: 2,
-                                child: Text(pedido.orderItems[index].quantity
-                                        .toString())),
+                                flex: 1,
+                                child: Text(pedido?.orderItems[index].quantity
+                                        .toString() ?? '0')),
                             Expanded(
-                                flex: 3,
-                                child: Text(pedido.orderItems[index].productId
-                                        .toString())),
+                                flex: 4,
+                                child: SizedBox(
+                                  width: 80,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Text(pedido?.orderItems[index].productName
+                                            .toString() ?? '0'),
+                                  ),
+                                )),
                             Expanded(
                               flex: 2,
-                              child: Text(
-                                  'R\$ ${pedido.orderItems[index].unitPrice.toStringAsFixed(2)}'),
+                              child: Text(valor.text),
                             ),
                           ],
                         );

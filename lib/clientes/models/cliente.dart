@@ -3,7 +3,7 @@ class ClienteModel {
   String firstName = '';
   String lastName = '';
   String city = '';
-  String country = '';
+  String? country = '';
   String phone = '';
 
   ClienteModel({
@@ -12,7 +12,8 @@ class ClienteModel {
     required this.lastName,
     required this.city,
     required this.country,
-    required this.phone,});
+    required this.phone,
+  });
 
   factory ClienteModel.fromJson(Map<String, dynamic> json) {
     return ClienteModel(
@@ -25,13 +26,11 @@ class ClienteModel {
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'firstName': firstName,
         'lastName': lastName,
         'city': city,
         'country': country,
         'phone': phone,
       };
-
 }

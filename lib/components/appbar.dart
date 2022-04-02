@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
+appBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
   return AppBar(
     toolbarHeight: 100,
     leading: Transform(
@@ -31,7 +31,8 @@ AppBarBuilder(String _label, GlobalKey<ScaffoldState> key) {
         child: Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: IconButton(
-              onPressed: () {}, icon: const Icon(Icons.account_circle_outlined)),
+              onPressed: () {},
+              icon: const Icon(Icons.account_circle_outlined)),
         ),
       ),
     ],

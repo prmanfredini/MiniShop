@@ -4,8 +4,9 @@ import 'package:flutter_pr/Produtos/models/produto_response.dart';
 import 'package:flutter_pr/Produtos/models/produto_request.dart';
 
 class ProdutoService {
+    //criar novo link de mock no apiary com os responses do json para teste
   final String baseURL =
-      "http://lb-0-1388852470.sa-east-1.elb.amazonaws.com/api/products";
+      "https://private-b79b2-minishop.apiary-mock.com/api/products";
 
   Future<ObjetoRetorno> getProduto(int index, int qtd) async {
     Response response = await Dio().get('$baseURL?index=$index&qtd=$qtd');
@@ -30,27 +31,26 @@ class ProdutoService {
   }
 
   Future<String> postProduto(ProdutoRequest produto) async {
-    print(produto.toJson());
     Response novoProduto =
         await Dio().post('$baseURL/create', data: produto.toJson());
 
     if (novoProduto.statusCode == 200) {
       return 'Produto cadastrado com Sucesso!';
     } else {
-      return 'Não foi possível completar a requisiçao.\nCode Error: ${novoProduto.statusCode} - ${novoProduto.statusMessage}';
+      return 'Não foi possível completar a requisiçao.\nCode Error: '
+          '${novoProduto.statusCode} - ${novoProduto.statusMessage}';
     }
   }
 
   Future<String> putProduto(ProdutoRequest produto, int id) async {
-    print(produto.toJson());
     Response novoProduto =
         await Dio().put('$baseURL/$id', data: produto.toJson());
-    print(novoProduto.data.toString());
 
     if (novoProduto.statusCode == 200) {
       return 'Produto alterado com Sucesso!';
     } else {
-      return 'Não foi possível completar a requisiçao.\nCode Error: ${novoProduto.statusCode} - ${novoProduto.statusMessage}';
+      return 'Não foi possível completar a requisiçao.\nCode Error: '
+          '${novoProduto.statusCode} - ${novoProduto.statusMessage}';
     }
   }
 }

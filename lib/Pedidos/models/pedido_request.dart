@@ -1,4 +1,3 @@
-
 import 'purchase_items.dart';
 
 class PedidoRequest {
@@ -6,18 +5,20 @@ class PedidoRequest {
   final String orderNumber;
   final List<PurchaseItems>? purchaseItems;
 
-
   PedidoRequest({
     required this.customerId,
     this.purchaseItems,
     required this.orderNumber,
   });
 
-
-
   Map<String, dynamic> toJson() => {
-    'customerId': customerId,
-    'orderNumber': orderNumber,
-    'purchaseItems': [purchaseItems?[0].productId, purchaseItems?[0].quantity],
-  };
+        'customerId': customerId,
+        'orderNumber': orderNumber,
+
+    // arrumar essa bagunça aqui \/
+        'purchaseItems': [
+          purchaseItems?[0].productId,
+          purchaseItems?[0].quantity
+        ],
+      };
 }

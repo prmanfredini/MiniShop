@@ -1,5 +1,4 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pr/clientes/bloc/clientes_bloc.dart';
 import 'package:flutter_pr/components/appbar.dart';
@@ -7,27 +6,19 @@ import 'package:flutter_pr/components/drawer_builder.dart';
 import 'package:flutter_pr/components/form_text.dart';
 import 'package:flutter_pr/components/phone_form_field.dart';
 
-class ClienteCadastro extends StatefulWidget {
-  String? dropdownValue;
+class ClienteCadastro extends StatelessWidget {
+  final label = 'Cadastrar Clientes';
+  final _clienteBloc = ClienteBloc();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _key = GlobalKey<FormState>();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final cityController = TextEditingController();
+  final countryController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  @override
-  State<ClienteCadastro> createState() => _HomeState();
-}
+  ClienteCadastro({Key? key}) : super(key: key);
 
-class _HomeState extends State<ClienteCadastro>
-    with SingleTickerProviderStateMixin {
-  final ClienteBloc _clienteBloc = ClienteBloc();
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var label = 'Cadastrar Clientes';
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +26,7 @@ class _HomeState extends State<ClienteCadastro>
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       extendBody: true,
-      appBar: AppBarBuilder(label, _scaffoldKey),
+      appBar: appBarBuilder(label, _scaffoldKey),
       drawer: DrawerBuilder(context),
       body: SingleChildScrollView(
         child: Column(
@@ -46,45 +37,48 @@ class _HomeState extends State<ClienteCadastro>
               child: Container(
                 color: Theme.of(context).primaryColor,
                 width: 500,
-                height: 340,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          right: 32.0, left: 32.0, top: 32.0),
-                      child: FormText(firstNameController, 'Nome'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          right: 32.0, left: 32.0, top: 16.0),
-                      child: FormText(lastNameController, 'Sobrenome'),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          right: 32.0, left: 32.0, top: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 120,
-                            child: FormText(cityController, 'Cidade'),
-                          ),
-                          SizedBox(
-                            width: 120,
-                            child: FormText(countryController, 'País'),
-                          ),
-                        ],
+                child: Form(
+                  key: _key,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 32.0, left: 32.0, top: 32.0),
+                        child: FormText(firstNameController, 'Nome'),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          right: 64.0, left: 64.0, top: 16.0),
-                      child: PhoneFormField(
-                          controller: phoneController,
-                          label: 'Telefone',
-                          formatter: TelefoneInputFormatter()),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 32.0, left: 32.0, top: 16.0),
+                        child: FormText(lastNameController, 'Sobrenome'),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                            right: 32.0, left: 32.0, top: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              child: FormText(cityController, 'Cidade'),
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: FormText(countryController, 'País'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                            right: 64.0, left: 64.0, top: 16.0),
+                        child: PhoneFormField(
+                            controller: phoneController,
+                            label: 'Telefone',
+                            formatter: TelefoneInputFormatter()),
+                      ),
+                      const Padding(padding: EdgeInsets.all(8)),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -96,16 +90,16 @@ class _HomeState extends State<ClienteCadastro>
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      _clienteBloc.CadastrarCliente(
-                        context,
-                        firstNameController.text,
-                        lastNameController.text,
-                        cityController.text,
-                        countryController.text,
-                        phoneController.text,
-                      );
+                      _clienteBloc.cadastrarCliente(
+                          context,
+                          firstNameController.text,
+                          lastNameController.text,
+                          cityController.text,
+                          countryController.text,
+                          phoneController.text,
+                          _key);
                     },
-                    child: Text('Cadastrar'),
+                    child: const Text('Cadastrar'),
                   )),
             ),
           ],
@@ -114,4 +108,3 @@ class _HomeState extends State<ClienteCadastro>
     );
   }
 }
-

@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_pr/Pedidos/models/imagem.dart';
 
 class ImagemService {
-  final String baseURL = "https://localhost:8080/api/images";
+    //criar novo link de mock no apiary com os responses do json para teste
+  final String baseURL =
+      "https://private-b79b2-minishop.apiary-mock.com/api/images/";
 
   Future<List<Imagem>> getImagem(int id) async {
     Response response = await Dio().get('$baseURL/{productId}?productId=$id');
@@ -10,13 +12,23 @@ class ImagemService {
     return res.map((dynamic json) => Imagem.fromJson(json)).toList();
   }
 
-  Future<String> putImage(int sequencia, int id) async {
-    Response response = await Dio().get('$baseURL/{productId}?productId=$id');
-    var path = response.data['objetoRetorno']['$id']['path']; // ?? arrumar isso
-    Response novaImagem = await Dio().put(
-        '$baseURL/upload/$id?sequencia=$sequencia',
-        data:
-            Imagem(path: path, productId: id, seqExibicao: sequencia).toJson());
-    return novaImagem.statusMessage.toString();
+  Future<String> putImage(int seq, int id) async {
+    Response response = await Dio().put('$baseURL/$id?sequencia=$seq');
+
+    if (response.statusCode == 200) {
+      return response.statusCode.toString();
+    } else {
+      throw "Imagem não enviada.";
+    }
+  }
+
+  Future<String> postImagem(FormData formData, int id) async {
+    Response response = await Dio().post("$baseURL/upload/$id", data: formData);
+
+    if (response.statusCode == 200) {
+      return response.statusCode.toString();
+    } else {
+      throw "Imagem não enviada.";
+    }
   }
 }

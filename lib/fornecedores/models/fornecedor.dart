@@ -1,4 +1,4 @@
-class FornecedorModel {
+class Fornecedor {
   int id = 0;
   String companyName = '';
   String contactName = '';
@@ -8,7 +8,7 @@ class FornecedorModel {
   String phone = '';
   String? fax = '';
 
-  FornecedorModel({
+  Fornecedor({
     required this.id,
     required this.companyName,
     required this.contactName,
@@ -16,10 +16,11 @@ class FornecedorModel {
     required this.city,
     required this.country,
     required this.phone,
-    required this.fax,});
+    required this.fax,
+  });
 
-  factory FornecedorModel.fromJson(Map<String, dynamic> json) {
-    return FornecedorModel(
+  factory Fornecedor.fromJson(Map<String, dynamic> json) {
+    return Fornecedor(
       id: json['id'],
       companyName: json['companyName'],
       contactName: json['contactName'],
@@ -31,8 +32,7 @@ class FornecedorModel {
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'companyName': companyName,
         'contactName': contactName,
         'contactTitle': contactTitle,
@@ -41,5 +41,4 @@ class FornecedorModel {
         'phone': phone,
         'fax': fax,
       };
-
 }
