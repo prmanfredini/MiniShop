@@ -12,7 +12,7 @@ shared preferences para salvar dados localmente
 
 ## Autores
 
-https://github.com/prmanfredini
+https://github.com/prmanfredini e
 https://github.com/rafael-kikuchi
 
 ## img
