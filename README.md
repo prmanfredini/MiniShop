@@ -8,3 +8,13 @@ Para teste criar um mock da API no app.apiary.io/ com os endpoints disponíveis 
 
 implementado com biblioteca de scroll infinito,
 shared preferences para salvar dados localmente
+
+
+## Autores
+
+https://github.com/prmanfredini
+https://github.com/rafael-kikuchi
+
+## img
+
+![picasion com_638ac988b71dd629f6545c3e6c7e83e2](https://user-images.githubusercontent.com/60902022/161394945-bc1db486-c6a4-4982-9be0-a03092b57464.gif)
