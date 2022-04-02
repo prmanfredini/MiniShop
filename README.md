@@ -1,6 +1,6 @@
 # MiniShop
 
-Projeto de estudo em flutter MiniShop com catalogo de produtos, clientes, fornecedores e pedidos, com edição e adição de dados de cada.
+Projeto de estudo em flutter MiniShop com catalogo de produtos, clientes, fornecedores e pedidos, com edição e adição de dados de cada. Seguindo o design definido para o projeto
 
 ## Getting Started
 
